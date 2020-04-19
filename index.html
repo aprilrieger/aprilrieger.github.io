@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Treasure Hunt</title>
+    <link rel="shortcut icon" href="https://cdn2.iconfinder.com/data/icons/valuable-items/200/achievement_chest_coin_gold_money_reward_treasure-512.png">
+    <link rel="stylesheet" href="treasurehunt.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <h1 id="top-page">Treasure Hunt Game</h1>
+
+    <div id="rules-section">
+      <h2>Here are the rules for the game:</h2>
+      <p>Rule 1: Click on one of the question marks below.</p>
+      <p>Rule 2: Find the treasure in less than 20 turns and you win!</p>
+      <p>Rule 3: If you find the bomb, you lose.</p>
+      <h3>Good Luck!</h3>
+    </div>
+
+    <div id="gameboard">
+      <table>
+        <tr>
+          <td id=0 onclick="treasure(0)">?</td>
+          <td id=1 onclick="treasure(1)">?</td>
+          <td id=2 onclick="treasure(2)">?</td>
+          <td id=3 onclick="treasure(3)">?</td>
+          <td id=4 onclick="treasure(4)">?</td>
+        </tr>
+        <tr>
+          <td id=5 onclick="treasure(5)">?</td>
+          <td id=6 onclick="treasure(6)">?</td>
+          <td id=7 onclick="treasure(7)">?</td>
+          <td id=8 onclick="treasure(8)">?</td>
+          <td id=9 onclick="treasure(9)">?</td>
+        </tr>
+        <tr>
+          <td id=10 onclick="treasure(10)">?</td>
+          <td id=11 onclick="treasure(11)">?</td>
+          <td id=12 onclick="treasure(12)">?</td>
+          <td id=13 onclick="treasure(13)">?</td>
+          <td id=14 onclick="treasure(14)">?</td>
+        </tr>
+        <tr>
+          <td id=15 onclick="treasure(15)">?</td>
+          <td id=16 onclick="treasure(16)">?</td>
+          <td id=17 onclick="treasure(17)">?</td>
+          <td id=18 onclick="treasure(18)">?</td>
+          <td id=19 onclick="treasure(19)">?</td>
+        </tr>
+        <tr>
+          <td id=20 onclick="treasure(20)">?</td>
+          <td id=21 onclick="treasure(21)">?</td>
+          <td id=22 onclick="treasure(22)">?</td>
+          <td id=23 onclick="treasure(23)">?</td>
+          <td id=24 onclick="treasure(24)">?</td>
+        </tr>
+      </table>
+    </div>
+    <p id="outcome"></p>
+
+    <div id="bottom-section">
+      <h3 id="turns">Turns remaining:</h3>
+      <h3 id="counter">20</h3>
+
+      <button type="button" onclick="location.reload()">Restart Game</button>
+
+      <footer>
+          <a href="#top-page">Pop to Top</a>
+          <a href="https://">External Link</a>
+          <p>Created by: April, Austin, and Sheldon the Puppers!</p>        
+      </footer>
+
+    <script type="text/javascript" src="treasurehunt.js"></script>
+  </body>
+</html>
