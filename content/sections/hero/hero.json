@@ -16,7 +16,7 @@
   },
   "description": "This is my Portfolio Site.",
   "socialProfiles": {
-    "from": ["LinkedIn", "Medium", "Github", "Mail"],
+    "from": ["LinkedIn", "Github"],
     "showIcons": true
   }
 }
