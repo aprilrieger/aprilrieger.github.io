@@ -1,0 +1,22 @@
+{
+  "intro": "Hi",
+  "heroPhoto": {
+    "src": "../../images/a_rieger.png",
+    "alt": "An image of a 40 something year old white woman with salt and pepper colored curly-hair, smiling, with a purple-ish colored circlar border."
+  },
+  "image": {
+    "src": "../../images/wave.png",
+    "alt": "Waving Hand Emoji"
+  },
+  "title": "I'm April Rieger",
+  "subtitle": {
+    "prefix": "I'm a ",
+    "highlight": "Software Engineer",
+    "suffix": "."
+  },
+  "description": "This is my Portfolio Site.",
+  "socialProfiles": {
+    "from": ["LinkedIn", "Medium", "Github", "Mail"],
+    "showIcons": true
+  }
+}

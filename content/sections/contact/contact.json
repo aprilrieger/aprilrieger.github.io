@@ -1,0 +1,13 @@
+{
+  "name": "April Rieger, Software Engineer",
+  "email": "april.rieger.dev@gmail.com",
+  "description": "Got a question, idea, or just want to talk tech? I'm all ears! Whether you're curious about my work, interested in collaboration, or in need of some tech insights, don't hesitate to drop me a line. ",
+  "image": {
+    "src": "../../images/a_rieger.png",
+    "alt": ""
+  },
+  "socialProfiles": {
+    "from": ["LinkedIn", "Medium", "Github", "Mail"],
+    "showIcons": true
+  }
+}

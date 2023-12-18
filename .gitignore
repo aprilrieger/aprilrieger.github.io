@@ -1,3 +1,21 @@
+# Dependencies
+/node_modules
+
+# Production
+/build
+/dist
+/public
+
+# Caching
+/.cache
+
+# Environment Variables
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
 .DS_Store
-node_modules
-src
+Thumbs.db

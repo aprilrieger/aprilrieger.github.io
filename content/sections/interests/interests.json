@@ -1,0 +1,72 @@
+{
+  "interests": [
+    {
+      "label": "Full-Stack Development",
+      "image": {
+        "src": "../../images/computer.png",
+        "alt": "Full-Stack Development"
+      }
+    },
+    {
+      "label": "Container & Orchestration",
+      "image": {
+        "src": "../../images/rocket.png",
+        "alt": "Containers & Orchestration"
+      }
+    },
+    {
+      "label": "Microservice Architecture",
+      "image": {
+        "src": "../../images/triangular_ruler.png",
+        "alt": "Microservice Architecture"
+      }
+    },
+    {
+      "label": "Database Management",
+      "image": {
+        "src": "../../images/closed_lock_with_key.png",
+        "alt": "Database Management"
+      }
+    },
+    {
+      "label": "Mentor & Collaborator",
+      "image": {
+        "src": "../../images/mentor.png",
+        "alt": "Mentor & Collaborator"
+      }
+    },
+    {
+      "label": "CI/CD Pipeline",
+      "image": {
+        "src": "../../images/arrows.png",
+        "alt": "CI/CD Pipeline"
+      }
+    },
+    {
+      "label": "Military Integrity",
+      "image": {
+        "src": "../../images/medal.png",
+        "alt": "Military Integrity"
+      }
+    },
+    {
+      "label": "Inclusivity Advocate",
+      "image": {
+        "src": "../../images/handshake.png",
+        "alt": "Inclusivity Advocate"
+      }
+    },
+    {
+      "label": "Lifelong Learner",
+      "image": {
+        "src": "../../images/books.png",
+        "alt": "Lifelong Learner"
+      }
+    }
+  ],
+  "button": {
+    "visible": true,
+    "label": "+ Load More",
+    "initiallyShownInterests": 5
+  }
+}
