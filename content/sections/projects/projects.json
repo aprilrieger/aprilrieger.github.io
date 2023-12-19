@@ -3,31 +3,27 @@
     {
       "visible": true,
       "category": "",
-      "title": "",
-      "description": "",
-      "tags": ["", ""],
+      "title": "Employee360",
+      "description": "A tool to manage and organize employee data to help during one on ones, coaching, reviews, and promotions.",
+      "tags": ["Ruby on Rails", "Product Owner"],
       "image": {
-        "src": "../../images/clement-h-95YRwf6CNw8-unsplash.jpg",
+        "src": "../../images/employee360.png",
         "alt": "",
         "linkTo": ""
       },
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/aprilrieger"
-        },
-        {
-          "type": "external",
-          "url": "https://aprilrieger.github.io"
+          "url": "https://github.com/scientist-softserv/employee360"
         }
       ]
     },
     {
       "visible": true,
       "category": "",
-      "title": "",
-      "description": "",
-      "tags": ["", ""],
+      "title": "A Step-by-Step Guide To Effortlessly Dockerize Your PHP Laravel App",
+      "description": "A quick dockerized Laravel php application ready for development.",
+      "tags": ["Tutorial", "Docker", "php", "Laravel", "Development"],
       "image": {
         "src": "../../images/clement-h-95YRwf6CNw8-unsplash.jpg",
         "alt": "",
@@ -36,11 +32,7 @@
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/aprilrieger"
-        },
-        {
-          "type": "external",
-          "url": "https://aprilrieger.github.io"
+          "url": "https://github.com/aprilrieger/larvel-app"
         }
       ]
     }
