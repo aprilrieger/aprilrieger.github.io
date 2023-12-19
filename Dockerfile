@@ -1,21 +1,16 @@
-# Use the official lightweight Node.js image.
-# https://hub.docker.com/_/node
-FROM node:alpine
+FROM node:18-buster as web
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+USER node
+COPY --chown=node . /home/node/app
+WORKDIR /home/node/app
 
-# Install dependencies
-RUN npm install
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/node/app/node_modules/.bin
 
-# Copy the rest of your app's source code from your host to your image filesystem.
-COPY . .
-
-# Build the app
-RUN npm run build
+RUN bash -l -c " \
+  npm install && \
+  npm run clean && \
+  npm run build"
 
 # Inform Docker that the container is listening on the specified port at runtime.
 EXPOSE 8000

@@ -13,13 +13,13 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "gatsby": "^5.0.1",
-    "gatsby-theme-portfolio-minimal": "latest",
+    "axios": ">=1.6.0",
+    "gatsby-theme-portfolio-minimal": "^4.6.4",
+    "minimatch": "9.0.3",
+    "npm": "^10.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sharp": ">=0.32.6",
-    "minimatch": ">=3.0.5",
-    "axios": ">=1.6.0"
+    "sharp": ">=0.32.6"
   },
   "author": "Konstantin Münster <mail@konstantin.digital>",
   "license": "0BSD",
@@ -45,9 +45,11 @@
     "gdpr-compliant"
   ],
   "devDependencies": {
+    "axios": ">=1.6.0",
+    "gatsby": "5.13.0",
     "gh-pages": "^6.1.0",
-    "sharp": ">=0.32.6",
-    "minimatch": ">=3.0.5",
-    "axios": ">=1.6.0"
+    "minimatch": "9.0.3",
+    "npm": "^10.2.5",
+    "sharp": ">=0.32.6"
   }
 }

@@ -1,9 +1,32 @@
-version: '3'
+version: '3.8'
+
+x-app: &app
+  build:
+    context: .
+    target: web
+  image: aprilrieger/aprilrieger.github.io:${TAG:-latest}
+  volumes:
+    - .:/home/node/app
+    - node:/home/node/app/node_modules
+  # env_file:
+  #   - .env
+  #   - .env.development
+  # Keep the stdin open, so we can attach to our app container's process
+  # and do things such as byebug, etc:
+  stdin_open: true
+  # Enable sending signals (CTRL+C, CTRL+P + CTRL+Q) into the container:
+  tty: true
+
 services:
   web:
-    build: .
+    <<: *app
+    command: npm run serve
+    # command: tail -f /dev/null
+    # environment:
+    #   - VIRTUAL_HOST=portfolio.test
+    #   - VIRTUAL_PORT=8000
     ports:
-      - "8000:8000"
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - 8000:8000
+      - 9000:9000
+volumes:
+  node:
