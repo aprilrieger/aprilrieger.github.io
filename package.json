@@ -14,9 +14,11 @@
   },
   "dependencies": {
     "axios": ">=1.6.0",
+    "gatsby-remark-mermaid": "^5.0.0",
     "gatsby-theme-portfolio-minimal": "^4.6.4",
     "minimatch": "9.0.3",
     "npm": "^10.2.5",
+    "puppeteer": "^24.42.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": ">=0.32.6"

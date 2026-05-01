@@ -1,0 +1,28 @@
+{
+  "testimonials": [
+    {
+      "quote": "I've been really impressed with how April's been able to keep the ship running while onboarding a person who's new to Kubernetes and Rancher. It's a lot for any one person.",
+      "author": "Max Kadel",
+      "role": "Platform Engineer",
+      "company": "Notch8"
+    },
+    {
+      "quote": "April's been so helpful with deployment issues. She kept dialogue going while she fixed the issue and took the time to walk me through her process and solution after. I got to ask a bunch of questions and see how all the pieces fit together.",
+      "author": "Sarah Proctor",
+      "role": "Software Engineer",
+      "company": "Notch8"
+    },
+    {
+      "quote": "The client was genuinely impressed and grateful for April's thorough, well-organized documentation. She set clear expectations for the handoff that made a real difference.",
+      "author": "Jill O'Connor",
+      "role": "Project Manager",
+      "company": "Notch8"
+    },
+    {
+      "quote": "Huge wins clearing out EFS storage, potentially saving many thousands of dollars annually. April's focus on AWS cost controls delivered wins across the board.",
+      "author": "Nicholas Steinwachs",
+      "role": "CEO",
+      "company": "Notch8"
+    }
+  ]
+}

@@ -1,14 +1,12 @@
 ---
-imageSrc: "../../images/sarah-dorweiler-QeVmJxZOv3k-unsplash.jpg"
-imageAlt: "About Me"
+imageSrc: "../../images/a_rieger.png"
+imageAlt: "April Rieger - Platform Engineer"
 ---
 
-I'm a seasoned software engineer with a robust foundation in full-stack development and DevOps. My journey through technology began with digital design, imparting a keen aesthetic eye that complements my technical acumen. Today, I architect resilient systems and build seamless user experiences, leveraging a rich palette of programming languages and tools. I thrive on the cutting edge, where code is clean, deployments are automated, and innovation is constant.
+I'm a Platform Engineer who builds and scales cloud infrastructure that teams can rely on. My expertise spans **Kubernetes**, **Helm**, **Terraform**, and **AWS**, with a track record of delivering measurable impact—including **$75K in annual savings** through strategic cluster optimization and resource consolidation.
 
-My passion for perpetual learning and teaching is the heartbeat of my professional ethos. With experience in guiding others, I find joy in elevating teams by sharing knowledge and fostering a culture of curiosity. My commitment to collaboration ensures that we're not just building software, but a community of innovation.
+What sets me apart: **I don't impose solutions—I integrate.** Before building anything, I study how a team works: their workflows, naming conventions, deployment patterns, and the tribal knowledge that never makes it into documentation. Then I build tooling that feels native to their ecosystem, not foreign. The best infrastructure is invisible—it just works the way people expect it to.
 
-Let's create something amazing together!
+I've led migrations from GitLab to GitHub across 20+ projects, architected CI/CD pipelines with GitHub Actions, and containerized complex platforms like Harvard's Dataverse and CERN's InvenioRDM for production Kubernetes deployments. My background in full-stack development (Ruby on Rails) gives me a developer's perspective on platform tooling—I build infrastructure that engineers actually want to use.
 
-</br>
-Photo by <a href="https://unsplash.com/@sarahdorweiler?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="nofollow noopener noreferrer" aria-label="External Link"><u>Sarah Dorweiler</u></a> on <a href="https://unsplash.com/photos/macbook-pro-beside-plant-in-vase-QeVmJxZOv3k?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  
+Beyond the technical, I'm passionate about **mentorship and knowledge sharing**. I've taught Interaction Design at the university level and regularly mentor junior engineers. I believe the best platforms are built by teams that learn together.

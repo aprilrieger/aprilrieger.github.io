@@ -2,40 +2,39 @@
   "siteMetadata": {
     "language": "en",
     "siteUrl": "aprilrieger.github.io",
-    "title": "April Rieger, Software Engineer, Portfolio",
-    "titleTemplate": "%s · Portfolio",
-    "description": "April Rieger, Software Engineer, Portfolio",
+    "title": "April Rieger | Infrastructure & Kubernetes Consulting",
+    "titleTemplate": "%s · April Rieger",
+    "description": "Kubernetes, Terraform, and AWS consulting for engineering teams. I help reduce cloud costs, stabilize infrastructure, and scale without unnecessary complexity.",
     "author": "April Rieger",
     "avatar": "../content/images/a_rieger.png",
-    "bio": "Seasoned full-stack software engineer and DevOps enthusiast, I blend design aesthetics with technical expertise to build innovative, user-friendly systems. Passionate about continuous learning and teamwork, I'm dedicated to fostering a community of innovation. Let's create something amazing together!",
+    "bio": "Infrastructure consultant helping engineering teams reduce cloud costs and stabilize Kubernetes deployments. Track record of $75K+ documented savings. I integrate into your existing systems—no rewrites required.",
     "social": {
       "github": "https://github.com/aprilrieger",
       "medium": "https://medium.com/@aprilrieger",
       "linkedin": "https://www.linkedin.com/in/aprilrieger1",
-      "mail": "mailto:april.rieger.dev@gmail.com"
+      "mail": "mailto:april.rieger@yahoo.com"
     }
   },
   "siteConfiguration": {
-    "logo": { "text": "Portfolio" },
+    "logo": { "text": "April Rieger" },
     "navigation": {
       "header": [
-        { "label": "About", "url": "/#about" },
-        { "label": "Toolbelt  ", "url": "/#toolbelt" },
+        { "label": "Services", "url": "/#services" },
+        { "label": "Background", "url": "/#about" },
+        { "label": "Work", "url": "/#projects" },
         { "label": "Blog", "url": "/blog" },
-        { "label": "Projects", "url": "/#projects" },
         { "label": "Contact", "url": "/#contact" }
       ],
       "ctaButton": {
-        "openNewTab": true,
-        "label": "Resume",
-        "url": "/april_rieger_resume.pdf"
+        "openNewTab": false,
+        "label": "Let's Talk",
+        "url": "/#contact"
       },
-      "footer": [
-      ]
+      "footer": []
     },
     "featureToggles": {
       "useDarkModeAsDefault": false,
-      "useDarkModeBasedOnUsersPreference": true,
+      "useDarkModeBasedOnUsersPreference": false,
       "useCookieBar": false
     }
   }

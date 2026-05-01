@@ -10,7 +10,7 @@ module.exports = {
           shortName: "Portfolio", // Used in manifest.json
           startUrl: "/", // Used in manifest.json
           backgroundColor: "#FFFFFF", // Used in manifest.json
-          themeColor: "#000000", // Used in manifest.json
+          themeColor: "#FFFFFF", // Used in manifest.json (browser chrome / PWA; matches light theme)
           display: "minimal-ui", // Used in manifest.json
         },
         contentDirectory: "./content",

@@ -1,59 +1,59 @@
 {
   "interests": [
     {
-      "label": "Full-Stack Development",
-      "image": {
-        "src": "../../images/computer.png",
-        "alt": "Full-Stack Development"
-      }
-    },
-    {
-      "label": "Container & Orchestration",
+      "label": "Kubernetes & Helm",
       "image": {
         "src": "../../images/rocket.png",
-        "alt": "Containers & Orchestration"
+        "alt": "Kubernetes & Helm"
       }
     },
     {
-      "label": "Microservice Architecture",
+      "label": "Terraform & IaC",
       "image": {
         "src": "../../images/triangular_ruler.png",
-        "alt": "Microservice Architecture"
+        "alt": "Terraform & Infrastructure as Code"
       }
     },
     {
-      "label": "Database Management",
-      "image": {
-        "src": "../../images/closed_lock_with_key.png",
-        "alt": "Database Management"
-      }
-    },
-    {
-      "label": "Mentor & Collaborator",
-      "image": {
-        "src": "../../images/mentor.png",
-        "alt": "Mentor & Collaborator"
-      }
-    },
-    {
-      "label": "CI/CD Pipeline",
+      "label": "CI/CD Pipelines",
       "image": {
         "src": "../../images/arrows.png",
-        "alt": "CI/CD Pipeline"
+        "alt": "CI/CD Pipelines"
       }
     },
     {
-      "label": "Military Integrity",
+      "label": "AWS & Cloud",
       "image": {
-        "src": "../../images/medal.png",
-        "alt": "Military Integrity"
+        "src": "../../images/computer.png",
+        "alt": "AWS & Cloud Infrastructure"
       }
     },
     {
-      "label": "Inclusivity Advocate",
+      "label": "Cost Optimization",
+      "image": {
+        "src": "../../images/closed_lock_with_key.png",
+        "alt": "Cost Optimization & FinOps"
+      }
+    },
+    {
+      "label": "Ruby on Rails",
+      "image": {
+        "src": "../../images/art.png",
+        "alt": "Ruby on Rails Development"
+      }
+    },
+    {
+      "label": "Mentor & Leader",
+      "image": {
+        "src": "../../images/mentor.png",
+        "alt": "Mentor & Leader"
+      }
+    },
+    {
+      "label": "Open Source",
       "image": {
         "src": "../../images/handshake.png",
-        "alt": "Inclusivity Advocate"
+        "alt": "Open Source Contributor"
       }
     },
     {

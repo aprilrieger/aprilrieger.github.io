@@ -10,13 +10,13 @@
   },
   "title": "I'm April Rieger",
   "subtitle": {
-    "prefix": "I'm a ",
-    "highlight": "Software Engineer",
-    "suffix": "."
+    "prefix": "I help teams ",
+    "highlight": "reduce cloud costs",
+    "suffix": " and stabilize infrastructure."
   },
-  "description": "This is my Portfolio Site.",
+  "description": "Kubernetes, Terraform, and AWS consulting for engineering teams who need results—not rewrites.",
   "socialProfiles": {
-    "from": ["Github", "LinkedIn", "Mail" ],
+    "from": ["Github", "LinkedIn", "Mail"],
     "showIcons": true
   }
 }

@@ -2,44 +2,119 @@
   "projects": [
     {
       "visible": true,
-      "category": "",
-      "title": "Employee360",
-      "description": "A tool to manage and organize employee data to help during one on ones, coaching, reviews, and promotions.",
-      "tags": ["Ruby on Rails", "Product Owner"],
+      "category": "Cost Optimization",
+      "title": "Tally - Kubernetes Cost Allocation Platform",
+      "description": "$75K annual savings through cost attribution. Built a system that transformed 'mystery cloud bills' into actionable insights. The challenge: 34% of costs were unattributable across shared infrastructure. My solution combined AWS Cost Explorer, Kubecost APIs, and custom EBS volume tagging to achieve 97% cost attribution.",
+      "tags": ["FinOps", "Kubernetes", "AWS", "Ruby on Rails"],
       "image": {
-        "src": "../../images/employee360.png",
-        "alt": "",
+        "src": "../../images/triangular_ruler.png",
+        "alt": "Tally cost allocation platform",
         "linkTo": ""
       },
       "links": [
         {
-          "type": "github",
-          "url": "https://github.com/scientist-softserv/employee360"
+          "type": "external",
+          "url": "/blog/tally-cost-attribution"
         }
       ]
     },
     {
       "visible": true,
-      "category": "",
-      "title": "A Step-by-Step Guide To Effortlessly Dockerize Your PHP Laravel App",
-      "description": "A quick dockerized Laravel php application ready for development.",
-      "tags": ["Tutorial", "Docker", "php", "Laravel", "Development"],
+      "category": "Platform Engineering",
+      "title": "DataverseUp - Harvard Research Data Repository",
+      "description": "Production-ready Kubernetes for Harvard's Dataverse platform. Led containerization for EKS deployments, building custom Helm charts and CI/CD pipelines that aligned with the existing GDCC community patterns—so future maintainers wouldn't need to learn a new approach.",
+      "tags": ["Helm", "Kubernetes", "AWS", "GitHub Actions"],
       "image": {
-        "src": "../../images/clement-h-95YRwf6CNw8-unsplash.jpg",
-        "alt": "",
+        "src": "../../images/rocket.png",
+        "alt": "DataverseUp deployment",
         "linkTo": ""
       },
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/aprilrieger/larvel-app"
+          "url": "https://github.com/notch8/dataverseup"
         }
       ]
+    },
+    {
+      "visible": true,
+      "category": "Platform Engineering",
+      "title": "InvenioUp - CERN Research Data Platform",
+      "description": "Containerized CERN's InvenioRDM for Kubernetes deployment. Wrapped the upstream helm-invenio chart matching InvenioRDM's expected patterns—same env vars, same migration scripts. Engineers familiar with the platform can onboard instantly.",
+      "tags": ["Helm", "Kubernetes", "InvenioRDM", "GitHub Actions"],
+      "image": {
+        "src": "../../images/rocket.png",
+        "alt": "InvenioUp deployment",
+        "linkTo": ""
+      },
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/notch8/invenioup"
+        }
+      ]
+    },
+    {
+      "visible": true,
+      "category": "Security & Performance",
+      "title": "Cloudflare Edge Protection",
+      "description": "$0 cost edge protection against AI scrapers. Open-source Terraform modules defending multi-tenant platforms using only Cloudflare free tier. Four-layer defense: WAF rules, rate limiting, Bot Fight Mode, and session-aware caching. Presented at Fedora Showcase April 2026.",
+      "tags": ["Terraform", "Cloudflare", "WAF", "Security"],
+      "image": {
+        "src": "../../images/closed_lock_with_key.png",
+        "alt": "Cloudflare infrastructure",
+        "linkTo": ""
+      },
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/notch8/cloudflare-iac-example"
+        },
+        {
+          "type": "external",
+          "url": "/blog/cloudflare-edge-protection"
+        }
+      ]
+    },
+    {
+      "visible": true,
+      "category": "Open Source",
+      "title": "Hyku - Digital Repository Accessibility",
+      "description": "WCAG compliance across 100+ routes for Samvera's library platform. Built automated A11y testing infrastructure with axe-core-rspec, route manifest generation, and CI integration. Accessibility isn't optional—it's infrastructure.",
+      "tags": ["Accessibility", "Ruby on Rails", "RSpec", "Open Source"],
+      "image": {
+        "src": "../../images/books.png",
+        "alt": "Hyku digital repository",
+        "linkTo": ""
+      },
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/samvera/hyku/pull/3010"
+        },
+        {
+          "type": "github",
+          "url": "https://github.com/samvera/hyku/pull/3014"
+        }
+      ]
+    },
+    {
+      "visible": true,
+      "category": "Infrastructure as Code",
+      "title": "Notch8-Ops - Enterprise DevOps Framework",
+      "description": "Multi-cluster Kubernetes infrastructure management. Terraform modules, reusable GitHub Actions workflows, and R&D templates for evaluating hostable software offerings.",
+      "tags": ["Terraform", "Kubernetes", "GitHub Actions", "Cloudflare"],
+      "image": {
+        "src": "../../images/computer.png",
+        "alt": "Notch8 Ops infrastructure",
+        "linkTo": ""
+      },
+      "links": []
     }
   ],
   "button": {
     "visible": true,
-    "label": "Visit on Github",
+    "label": "View More on GitHub",
     "url": "https://github.com/aprilrieger"
   }
 }
