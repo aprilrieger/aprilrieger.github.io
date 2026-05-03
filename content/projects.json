@@ -1,0 +1,19 @@
+{
+  "projects": [
+    {
+      "title": "Multi-tenant SaaS pipelines",
+      "summary": "CI/CD modernization with Git-backed promotion and repeatable environments.",
+      "tags": ["GitHub Actions", "Kubernetes", "Terraform"]
+    },
+    {
+      "title": "Kubernetes cost attribution",
+      "summary": "Cluster-level metering and dashboards that surfaced six-figure annual savings pathways.",
+      "tags": ["Cost", "Kubernetes", "Observability"]
+    },
+    {
+      "title": "Edge perimeter hardening",
+      "summary": "Terraform-first defenses at CDN edge layer with zero licensing drag where possible.",
+      "tags": ["Cloudflare", "Terraform", "Security"]
+    }
+  ]
+}

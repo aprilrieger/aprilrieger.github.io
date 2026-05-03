@@ -1,11 +1,27 @@
-# This is a README 
+# FlyingSquirrel site
 
-## How to get the stack up and running?
+Personal GitHub Pages site for **FlyingSquirrel** (infrastructure consulting), built with **Gatsby 5** + **Tailwind**.
 
-```sh
-npm install -g gatsby-cli
-git clone git@github.com:aprilrieger/aprilrieger.github.io.git
-cd aprilrieger.github.io
+## Prerequisites
+
+Node 18+ (CI uses Node 20).
+
+## Develop
+
+```bash
 npm install
-gatsby develop
+npm run develop
 ```
+
+## Production build
+
+```bash
+npm run build
+npm run serve
+```
+
+## Deploy
+
+Pushes to `main` run [`.github/workflows/gatsby.yml`](.github/workflows/gatsby.yml) and publish to GitHub Pages.
+
+Historical **gatsby-theme-portfolio-minimal** snapshot: branch `archive/gatsby-portfolio-theme`.

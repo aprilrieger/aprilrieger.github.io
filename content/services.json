@@ -1,0 +1,24 @@
+{
+  "services": [
+    {
+      "title": "Cloud cost clarity",
+      "description": "We map where dollars go across compute, networking, storage, and observability — then tighten with attribution, rightsizing, and guardrails.",
+      "icon": "📊"
+    },
+    {
+      "title": "Kubernetes you can operate",
+      "description": "Upgrades without drama, sane Helm/GitOps workflows, ingress and certs that behave, plus runbooks your on-call trusts.",
+      "icon": "☸️"
+    },
+    {
+      "title": "CI/CD & infra reliability",
+      "description": "Pipelines that match your repo reality — GitHub Actions, Terraform modules, reproducible staging paths, rollback that works.",
+      "icon": "🚀"
+    },
+    {
+      "title": "Integration, not takeover",
+      "description": "We learn your conventions first. Deliverables plug into existing tooling instead of bulldozing for “greenfield” vanity.",
+      "icon": "🤝"
+    }
+  ]
+}

@@ -1,28 +1,38 @@
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
 module.exports = {
+  jsxRuntime: `automatic`,
+  siteMetadata: {
+    title: `FlyingSquirrel | Infrastructure & Kubernetes consulting`,
+    titleTemplate: `%s · FlyingSquirrel`,
+    description: `FlyingSquirrel helps engineering teams cut cloud waste, stabilize Kubernetes, and ship with confidence — integrated with how you already work.`,
+    siteUrl: `https://aprilrieger.github.io`,
+    twitterUsername: `@aprilrieger`,
+  },
+  pathPrefix: ``,
   plugins: [
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
-      resolve: "gatsby-theme-portfolio-minimal",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        siteUrl: "https://gatsby-starter-portfolio-minimal-theme.netlify.app/", // Used for sitemap generation
-        manifestSettings: {
-          favicon: "./content/images/favicon.png", // Path is relative to the root
-          siteName: "April Rieger, Software Engineer, Portfolio", // Used in manifest.json
-          shortName: "Portfolio", // Used in manifest.json
-          startUrl: "/", // Used in manifest.json
-          backgroundColor: "#FFFFFF", // Used in manifest.json
-          themeColor: "#000000", // Used in manifest.json
-          display: "minimal-ui", // Used in manifest.json
-        },
-        contentDirectory: "./content",
-        blogSettings: {
-          path: "/blog", // Defines the slug for the blog listing page
-          usePathPrefixForArticles: true, // Default true (i.e. path will be /blog/first-article)
-        },
-        // googleAnalytics: {
-        //     trackingId: "UA-XXXXXX-X",
-        //     anonymize: true, // Default true
-        //     environments: ["production", "development"] // Default ["production"]
-        // }
+        path: `${__dirname}/content/images`,
+        name: `images`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `FlyingSquirrel`,
+        short_name: `FlyingSquirrel`,
+        start_url: `/`,
+        background_color: `#fafaf9`,
+        theme_color: `#0f766e`,
+        display: `standalone`,
+        icon: `${__dirname}/content/images/fs_logo.png`,
       },
     },
   ],

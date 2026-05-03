@@ -1,55 +1,35 @@
 {
-  "name": "gatsby-starter-portfolio-minimal-theme",
+  "name": "flyingsquirrel-site",
   "version": "1.0.0",
-  "description": "A Gatsby Starter Project to easily get started with the Portfolio Minimal Theme.",
+  "private": true,
+  "description": "FlyingSquirrel — infrastructure consulting (Gatsby + Tailwind)",
   "scripts": {
     "clean": "gatsby clean",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build && gh-pages -d public"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "axios": ">=1.6.0",
-    "gatsby-theme-portfolio-minimal": "^4.6.4",
-    "minimatch": "9.0.3",
-    "npm": "^10.2.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sharp": ">=0.32.6"
+    "gatsby": "^5.16.0",
+    "gatsby-plugin-image": "^3.15.0",
+    "gatsby-plugin-manifest": "^5.15.0",
+    "gatsby-plugin-postcss": "^6.15.0",
+    "gatsby-plugin-sharp": "^5.15.0",
+    "gatsby-source-filesystem": "^5.15.0",
+    "gatsby-transformer-sharp": "^5.15.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
-  "author": "Konstantin Münster <mail@konstantin.digital>",
-  "license": "0BSD",
-  "starter-name": "gatsby-starter-portfolio-minimal-theme",
-  "homepage": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal-theme#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal-theme.git"
-  },
-  "bugs": {
-    "url": "https://github.com/konstantinmuenster/gatsby-starter-portfolio-minimal-theme/issues"
-  },
-  "keywords": [
-    "react",
-    "gatsby",
-    "gatsby-theme",
-    "PWA",
-    "portfolio",
-    "showcase",
-    "minimal",
-    "animations",
-    "dark-mode",
-    "gdpr-compliant"
-  ],
   "devDependencies": {
-    "axios": ">=1.6.0",
-    "gatsby": "5.13.0",
-    "gh-pages": "^6.1.0",
-    "minimatch": "9.0.3",
-    "npm": "^10.2.5",
-    "sharp": ">=0.32.6"
-  }
+    "autoprefixer": "^10.4.21",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  },
+  "author": "FlyingSquirrel",
+  "license": "MIT"
 }

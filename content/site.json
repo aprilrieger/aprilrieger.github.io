@@ -1,0 +1,25 @@
+{
+  "brand": {
+    "name": "FlyingSquirrel",
+    "displayName": "FlyingSquirrel",
+    "slug": "flyingsquirrel",
+    "tagline": "Infrastructure & Kubernetes consulting"
+  },
+  "hero": {
+    "headline": "Operational clarity on cloud and Kubernetes",
+    "subline": "We embed with engineering teams — cost discipline, resilient clusters, and automation that respects how you ship today.",
+    "ctaLabel": "Start a conversation"
+  },
+  "contactLead": {
+    "title": "How we engage",
+    "body": "We begin with a short discovery call — scope, timelines, risks — then propose a pragmatic path: advisory, fractional platform support, or project-based delivery.",
+    "email": "mailto:april.rieger@yahoo.com",
+    "emailDisplay": "april.rieger@yahoo.com"
+  },
+  "social": {
+    "github": "https://github.com/aprilrieger",
+    "linkedin": "https://www.linkedin.com/in/aprilrieger1",
+    "medium": "https://medium.com/@aprilrieger"
+  },
+  "principalNote": "FlyingSquirrel is led by a hands-on principal who has migrated multi-repo platforms, tightened AWS spend, and run production Kubernetes in anger."
+}
