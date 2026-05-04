@@ -1,0 +1,15 @@
+---
+/**
+ * Site content width + horizontal padding. Use inside BaseLayout with fullWidthMain
+ * so the hero and column align with the default max-w-5xl column.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["w-full max-w-5xl mx-auto px-5 md:px-6", className]}>
+  <slot />
+</div>

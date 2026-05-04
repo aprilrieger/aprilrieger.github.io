@@ -1,0 +1,72 @@
+---
+import TagPill from "./TagPill.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  post: CollectionEntry<"blog">;
+  featured?: boolean;
+};
+
+const { post, featured = false } = Astro.props;
+const { title, description, publishedDate, tags } = post.data;
+const href = `/blog/${post.id}`;
+---
+
+<article
+  class:list={[
+    "group relative overflow-hidden rounded-xl border border-border/80 bg-surface/35 shadow-sm shadow-black/15",
+    "motion-safe:transition-[transform,box-shadow,background-color,border-color] motion-safe:duration-300 motion-safe:ease-out",
+    "hover:border-accent/40 hover:bg-surface/55 hover:shadow-lg hover:shadow-black/20",
+    "motion-safe:hover:-translate-y-1",
+    featured ? "p-6 md:p-8" : "p-5 md:p-6",
+  ]}
+>
+  <div
+    class="pointer-events-none absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-accent via-accent/50 to-accent/10 opacity-90 motion-safe:transition-opacity group-hover:opacity-100"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative min-w-0 pl-4 sm:pl-5">
+    <h2 class="m-0">
+      <a href={href} class="inline-flex items-start gap-2 text-inherit no-underline max-w-full">
+        <span
+          class:list={[
+            "font-semibold tracking-tight text-ink motion-safe:transition-colors group-hover:text-accent",
+            featured ? "text-xl md:text-2xl leading-snug" : "text-lg md:text-xl leading-snug",
+          ]}
+        >
+          {title}
+        </span>
+        <span
+          class="shrink-0 text-accent text-base md:text-lg leading-none mt-0.5 md:mt-1 motion-safe:transition-transform group-hover:translate-x-1 opacity-80 group-hover:opacity-100"
+          aria-hidden="true"
+        >
+          →
+        </span>
+      </a>
+    </h2>
+    <p class="text-[15px] md:text-base text-ink-muted leading-relaxed m-0 mt-3 max-w-2xl">
+      {description}
+    </p>
+    <div
+      class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border/55 pt-4 text-xs"
+    >
+      <time datetime={publishedDate.toISOString()} class="text-ink-muted tabular-nums">
+        {publishedDate.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </time>
+      <ul class="m-0 flex flex-wrap list-none gap-2 p-0">
+        {
+          tags.map((t) => (
+            <li class="list-none">
+              <TagPill label={t} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</article>

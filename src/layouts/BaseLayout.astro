@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Seo from "../components/Seo.astro";
+import SkipLink from "../components/SkipLink.astro";
+import { siteConfig } from "../site.config";
+
+type Props = {
+  title?: string;
+  description?: string;
+  path?: string;
+  ogType?: "website" | "article";
+  publishedTime?: string;
+  jsonLdPerson?: boolean;
+  /** Hint search engines to skip (demo / internal pages) */
+  noindex?: boolean;
+  /** Main is edge-to-edge; use inner max-w-5xl + px where you need the default column */
+  fullWidthMain?: boolean;
+};
+
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  path = Astro.url.pathname,
+  ogType = "website",
+  publishedTime,
+  jsonLdPerson = false,
+  noindex = false,
+  fullWidthMain = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={siteConfig.language} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Seo
+      title={title}
+      description={description}
+      path={path}
+      ogType={ogType}
+      publishedTime={publishedTime}
+      jsonLdPerson={jsonLdPerson}
+      noindex={noindex}
+    />
+  </head>
+  <body class="min-h-dvh flex flex-col">
+    <SkipLink />
+    <Header />
+    <main
+      id="main"
+      tabindex="-1"
+      class:list={[
+        "flex-1 w-full py-14 md:py-20",
+        fullWidthMain ? "max-w-none mx-0 px-0" : "max-w-5xl mx-auto px-5",
+      ]}
+    >
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

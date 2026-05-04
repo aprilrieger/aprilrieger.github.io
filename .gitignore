@@ -1,12 +1,11 @@
 # Dependencies
 /node_modules
 
-# Production
-/build
+# Astro
 /dist
-/public
+/.astro
 
-# Caching
+# Tooling caches
 /.cache
 
 # Environment Variables

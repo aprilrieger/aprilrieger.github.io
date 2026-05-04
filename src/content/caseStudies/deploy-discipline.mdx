@@ -1,0 +1,51 @@
+---
+title: "Cutting incident cost with sane deploys and rollbacks"
+summary: "Stabilized a high-change Rails service by tightening deploy mechanics, release discipline, and on-call handoffs—fewer regressions without freezing throughput."
+published: true
+featured: true
+client: "High-traffic B2B SaaS (anonymized)"
+stack: ["Ruby on Rails", "CI/CD", "Observability", "PostgreSQL"]
+metrics:
+  - label: "Incidents"
+    value: "Down month-over-month after guardrails"
+  - label: "Rollback time"
+    value: "Minutes, first-class path"
+  - label: "Change rate"
+    value: "Kept shipping; less firefighting"
+---
+
+## Problem
+
+The team shipped quickly, but **production churn** was expensive: partial deploys, unclear rollback paths, and incidents that dragged because signals were fragmented. The business needed **velocity without roulette**—especially around database migrations and cache invalidation edges.
+
+## Constraints
+
+- **Legacy momentum**: customers depended on a mature Rails codebase with historical shortcuts.
+- **Lean on-call**: no dedicated SRE bubble; engineers needed runbooks that matched reality.
+- **Latency-sensitive paths**: some endpoints dominated revenue-sensitive flows—performance regression was a production incident class.
+
+## Architecture
+
+We treated release engineering as part of product architecture:
+
+- **Single artifact per deploy** with explicit versioning and health gates
+- **Migration strategy** encoded as phased steps (expand/contract where applicable) rather than “big bang” DDL
+- **Tracing and logs** correlated around request IDs—enough to answer “what changed?” without SSH folklore
+
+Conceptually: CI builds confidence, deploy orchestration limits blast radius, observability closes the loop.
+
+## Key decisions and tradeoffs
+
+- **Feature flags vs branch deploys**: favored flags for user-visible risk and kept branch lifetimes short; accepted operational overhead of flag hygiene.
+- **Automated rollback triggers**: started conservative (human in the loop) to avoid flapping; tightened as signals proved reliable.
+- **Debt paydown sequencing**: fixed deploy/rollback before chasing micro-optimizations—**stability financed speed**.
+
+## Impact
+
+- Fewer customer-visible regressions tied to releases; on-call pages concentrated on **real anomalies**, not self-inflicted deploy issues.
+- Mean time to mitigate dropped because rollback was practiced and **boring**.
+- Engineers regained calendar space for feature work that previously leaked into firefighting.
+
+## Reflection
+
+I would socialize **error budget language** earlier with product stakeholders. Technical guardrails land better when non-engineers understand the tradeoff: one more “quick bypass” today borrows from next quarter’s incident budget. Also: invest in synthetic checks only after core golden paths are honestly documented—otherwise monitors lie confidently.

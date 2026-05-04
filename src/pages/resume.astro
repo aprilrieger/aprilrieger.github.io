@@ -1,0 +1,143 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
+import SocialIconLinks from "../components/SocialIconLinks.astro";
+import TopHeroCard from "../components/TopHeroCard.astro";
+import { siteConfig } from "../site.config";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("bio", "about");
+if (!entry) throw new Error("Missing bio entry");
+
+const { Content } = await render(entry);
+const title = `Resume · ${siteConfig.name}`;
+---
+
+<BaseLayout title={title} description={siteConfig.description} path="/resume" jsonLdPerson>
+  <article class="page-stack">
+    <TopHeroCard labelledBy="resume-heading">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+          <div class="min-w-0 space-y-3 flex-1">
+            <p
+              class="hero-stagger-1 text-sm uppercase tracking-widest m-0 bg-gradient-to-r from-accent via-accent-hover to-accent-muted bg-clip-text text-transparent"
+            >
+              Resume
+            </p>
+            <h1
+              id="resume-heading"
+              class="hero-stagger-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-ink leading-[1.1] m-0"
+            >
+              {siteConfig.name}
+              <span class="block text-xl md:text-2xl font-normal tracking-wide text-ink-subtle mt-2 md:mt-3">
+                {siteConfig.role}
+              </span>
+            </h1>
+          </div>
+          <a
+            href={siteConfig.resumePdfPath}
+            class="hero-stagger-2 cta shrink-0 self-start sm:mt-0.5"
+            download
+            aria-label="Download resume PDF"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-4 w-4 shrink-0"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
+              />
+            </svg>
+            Resume PDF
+          </a>
+        </div>
+        <p class="hero-stagger-3 text-xl font-normal text-ink leading-snug m-0 max-w-2xl mt-6 md:mt-7">
+          {siteConfig.oneLiner}
+        </p>
+        <p class="hero-stagger-4 text-ink-muted m-0 max-w-2xl leading-relaxed mt-4 md:mt-5">
+          {siteConfig.summary}
+        </p>
+        <div class="hero-stagger-5 mt-6 md:mt-7 max-w-2xl space-y-2">
+          <p class="text-[11px] uppercase tracking-[0.14em] text-accent/90 m-0">Open to</p>
+          <p class="text-ink-muted m-0 leading-relaxed">
+            {siteConfig.footerNote}
+          </p>
+        </div>
+        <SocialIconLinks
+          class="hero-stagger-6 mt-10 md:mt-12 pt-0.5"
+          githubUrl={siteConfig.social.github}
+          linkedinUrl={siteConfig.social.linkedin}
+        />
+    </TopHeroCard>
+
+    <section class="page-section" aria-label="Biography">
+      <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-10 lg:gap-12">
+        <div class="max-w-3xl min-w-0 rounded-xl border border-border/90 bg-surface/40 p-6 md:p-8">
+          <Prose>
+            <Content />
+          </Prose>
+        </div>
+        <aside
+          class="w-full lg:w-56 xl:w-64 shrink-0 lg:sticky lg:top-28 space-y-5"
+          aria-label="Quick links"
+        >
+          <div class="rounded-xl border border-border/90 bg-surface/30 p-5">
+            <p class="text-[11px] uppercase tracking-[0.14em] text-accent/90 m-0 mb-4">Quick links</p>
+            <ul class="m-0 list-none space-y-3 p-0 text-sm">
+              <li>
+                <a
+                  href="/projects"
+                  class="text-ink-muted hover:text-accent motion-safe:transition-colors no-underline hover:underline underline-offset-4"
+                >
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/blog"
+                  class="text-ink-muted hover:text-accent motion-safe:transition-colors no-underline hover:underline underline-offset-4"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  class="text-ink-muted hover:text-accent motion-safe:transition-colors no-underline hover:underline underline-offset-4"
+                >
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.social.github}
+                  class="text-ink-muted hover:text-accent motion-safe:transition-colors no-underline hover:underline underline-offset-4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.social.linkedin}
+                  class="text-ink-muted hover:text-accent motion-safe:transition-colors no-underline hover:underline underline-offset-4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

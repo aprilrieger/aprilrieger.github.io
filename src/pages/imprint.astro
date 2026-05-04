@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("legal", "imprint");
+if (!entry) throw new Error("Missing imprint content");
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="Imprint" description="Legal disclosure and contact information." path="/imprint">
+  <article class="page-stack">
+    <Prose>
+      <Content />
+    </Prose>
+  </article>
+</BaseLayout>

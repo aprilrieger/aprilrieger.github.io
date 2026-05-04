@@ -1,0 +1,52 @@
+---
+title: "API hardening before a partner integration deadline"
+summary: "Tightened authentication, rate limits, and contract tests on public-facing APIs so a flagship integration shipped on schedule without a security gamble."
+published: true
+featured: true
+client: "Mid-market platform (anonymized)"
+stack: ["REST APIs", "JWT", "OpenAPI", "Load testing", "Rails"]
+metrics:
+  - label: "SLA"
+    value: "Met launch window"
+  - label: "Abuse resistance"
+    value: "Rate limits + keyed auth"
+  - label: "Contract drift"
+    value: "Caught in CI"
+---
+
+## Problem
+
+A revenue-critical **partner integration** required exposing stable APIs under a fixed launch date. The existing endpoints “worked in production” for internal callers but were not yet fit for **third-party coupling**: auth story was inconsistent, error shapes varied, and there was little confidence about burst behavior.
+
+## Constraints
+
+- **Clock**: immovable marketing/commercial deadline; scope had to be negotiated, not fantasized away.
+- **Security bar**: external tokens, replay considerations, and least-privilege access were non-negotiable.
+- **Backwards compatibility**: internal consumers could not be broken silently while external contracts froze.
+
+## Architecture
+
+We treated the integration surface as a **versioned contract**:
+
+- explicit **auth boundary** (short-lived credentials, rotation story documented)
+- consistent error envelope and idempotency keys on mutating routes
+- **OpenAPI** (or equivalent) as the shared truth, consumed by contract tests in CI
+- separate **rate-limit and WAF-adjacent** policies for partner traffic classes
+
+Internally, the service layer was refactored so “business operation” endpoints were not duplicated across “internal vs external” paths unless necessary—**one implementation**, multiple adapters where behaviors diverged.
+
+## Key decisions and tradeoffs
+
+- **Strict compatibility vs velocity**: froze v1 behaviors with documented exceptions rather than infinite flexibility—partners need predictability more than novelty.
+- **Sync vs async flows**: chose synchronous request/response where partner mental model demanded simplicity; deferred webhook reliability enhancements to a fast-follow with clear SLAs.
+- **Load testing scope**: focused on partner-shaped traffic mixes, not vanity peak numbers—**validated tail latency** under practical concurrency.
+
+## Impact
+
+- Launch proceeded without emergency firewalling or key rotation scrambles.
+- Contract tests caught **breaking changes pre-merge**, reducing integration ping-pong.
+- Support load stayed manageable because failure modes were explicit and documented.
+
+## Reflection
+
+I would push earlier for a **shared sandbox environment** and deterministic test accounts—integration partners always test in ways you did not imagine. Also: publish SLAs for error rates and maintenance windows at the same time as the API docs; ambiguity becomes incidents later.

@@ -1,0 +1,27 @@
+---
+title: "When to carve a service out of a monolith (and when not to)"
+description: "A decision checklist: team boundaries, deployment cadence, data cohesion, and the hidden tax of distributed debugging."
+publishedDate: 2024-11-18
+tags: ["Architecture", "Microservices", "Tradeoffs"]
+featured: false
+---
+
+## The wrong reason
+
+“We might need to scale independently someday” is not a plan—it is **an excuse to postpone hard domain modeling**. Most teams pay for microservices in **coordination overhead** long before they harvest scaling wins.
+
+## Good reasons to split
+
+- **Independent release cadence** is real: two teams break each other weekly because the monolith couples their blast radius.
+- **Different SLO classes**: batch-heavy workloads crush latency-sensitive paths and you've exhausted cheaper isolation (queues, workers, read replicas with clear contracts).
+- **Security / compliance isolation** where audits require hard boundaries.
+
+## Stay monolith when
+
+- The same team owns both sides and the “service” would share a database anyway.
+- You lack baseline observability; splitting first **multiplies** unknowns.
+- Your problem is unclear bounded contexts—**draw lines in the domain** before you draw network hops.
+
+## The senior question
+
+If this were a single deploy unit with **clear module boundaries**, would we still need a separate service? If yes, list the **non-negotiable** operational benefit. If you cannot, defer.

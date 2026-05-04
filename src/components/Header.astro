@@ -1,0 +1,40 @@
+---
+import { siteConfig } from "../site.config";
+
+const pathname = Astro.url.pathname;
+
+function isActive(href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+---
+
+<header class="border-b border-border/80 bg-canvas/90 backdrop-blur-sm sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-5 py-4 flex flex-wrap items-center justify-between gap-3">
+    <a
+      href="/"
+      class="text-sm font-semibold tracking-tight text-ink hover:text-accent transition-colors"
+    >
+      {siteConfig.name.split(" ")[0]}
+      <span class="text-ink-subtle font-normal">· {siteConfig.role}</span>
+    </a>
+    <nav aria-label="Primary" class="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+      {
+        siteConfig.nav.map(({ label, href }) => (
+          <a
+            href={href}
+            aria-current={isActive(href) ? "page" : undefined}
+            class:list={[
+              "transition-colors",
+              isActive(href)
+                ? "text-accent"
+                : "text-ink-muted hover:text-ink",
+            ]}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

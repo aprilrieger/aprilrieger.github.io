@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopHeroCard from "../components/TopHeroCard.astro";
+import { siteConfig } from "../site.config";
+
+const title = `Contact · ${siteConfig.name}`;
+---
+
+<BaseLayout title={title} description="How to reach April Rieger for roles or technical work." path="/contact">
+  <article class="page-stack">
+    <TopHeroCard labelledBy="contact-heading">
+      <div class="space-y-3">
+        <p
+          class="hero-stagger-1 text-sm uppercase tracking-widest m-0 bg-gradient-to-r from-accent via-accent-hover to-accent-muted bg-clip-text text-transparent"
+        >
+          Get in touch
+        </p>
+        <h1
+          id="contact-heading"
+          class="hero-stagger-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-ink leading-[1.1] m-0"
+        >
+          Contact
+        </h1>
+      </div>
+      <p class="hero-stagger-3 text-xl font-normal text-ink-muted m-0 max-w-2xl leading-snug mt-6 md:mt-7">
+        {siteConfig.footerNote}
+      </p>
+      <ul
+        class="hero-stagger-4 space-y-6 list-none p-0 m-0 text-[15px] leading-relaxed mt-8 md:mt-10 pt-6 border-t border-border/50 max-w-2xl"
+      >
+        <li>
+          <span class="text-xs uppercase tracking-wide text-ink-subtle block mb-1.5">Email</span>
+          <a href={siteConfig.social.emailMailto} class="text-accent hover:underline text-lg font-medium">
+            {siteConfig.social.emailDisplay}
+          </a>
+        </li>
+        <li>
+          <span class="text-xs uppercase tracking-wide text-ink-subtle block mb-1.5">LinkedIn</span>
+          <a
+            href={siteConfig.social.linkedin}
+            class="text-ink-muted hover:text-accent motion-safe:transition-colors break-all"
+          >
+            {siteConfig.social.linkedin}
+          </a>
+        </li>
+        <li>
+          <span class="text-xs uppercase tracking-wide text-ink-subtle block mb-1.5">GitHub</span>
+          <a
+            href={siteConfig.social.github}
+            class="text-ink-muted hover:text-accent motion-safe:transition-colors"
+          >
+            {siteConfig.social.github}
+          </a>
+        </li>
+        {
+          siteConfig.calendlyUrl ? (
+            <li>
+              <span class="text-xs uppercase tracking-wide text-ink-subtle block mb-1.5">Schedule</span>
+              <a
+                href={siteConfig.calendlyUrl}
+                class="text-accent hover:underline font-medium break-all"
+              >
+                Book a time
+              </a>
+            </li>
+          ) : null
+        }
+      </ul>
+    </TopHeroCard>
+  </article>
+</BaseLayout>
