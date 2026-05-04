@@ -32,6 +32,20 @@ Colors are semantic tokens in [`tailwind.config.mjs`](tailwind.config.mjs) (`can
 
 Replace [`public/april_rieger_resume.pdf`](public/april_rieger_resume.pdf) with your final resume.
 
-## Deploy
+## Deploy (GitHub Pages)
 
-GitHub Actions workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) runs `npm ci` and `npm run build`, then deploys `dist/` to GitHub Pages.
+This repo is set up for a **user site** at `https://aprilrieger.github.io`. `site` in [`astro.config.mjs`](astro.config.mjs) must stay `https://aprilrieger.github.io` (no `base` path).
+
+### One-time GitHub settings
+
+1. Repo **Settings** → **Pages** → **Build and deployment**.
+2. Under **Source**, choose **GitHub Actions** (not “Deploy from a branch”).
+3. Push **`main`** or **`using-astro`**; the workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) will build and publish `dist/`. (While the Astro branch is in flight, **`using-astro` and `main` both deploy** to the same site; after you’re done, remove `using-astro` from the workflow so only `main` deploys—see comments in that file.)
+
+### What the workflow does
+
+- **Push to `main` or `using-astro`:** `npm ci` → `npm run build` → upload `dist/` → deploy with `actions/deploy-pages`.
+- **Pull requests** into `main` or `using-astro`: runs **build only** (no deploy).
+- **Workflow dispatch:** run manually from **`main`** or **`using-astro`** to deploy that ref.
+
+Publishing uses the same workflow as [Astro’s GitHub guide](https://docs.astro.build/en/guides/deploy/github/). You can still run `npm run deploy` locally with `gh-pages` if needed; Actions is the recommended path.
