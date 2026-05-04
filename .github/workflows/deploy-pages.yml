@@ -2,9 +2,9 @@
 # One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
 # Docs: https://docs.astro.build/en/guides/deploy/github/
 #
-# While shipping the Astro rework, pushes to `using-astro` also deploy (same live site).
-# After merging to `main`, delete `using-astro` from every `|| github.ref == ...` and from
-# `on.push.branches` / `on.pull_request.branches` so only `main` builds and deploys.
+# Pushes to non-protected branches still run build (below) for CI; only `main` uploads the
+# Pages artifact and deploys. To allow another branch to deploy, add it under
+# Settings → Environments → github-pages → Deployment branches.
 
 name: Deploy to GitHub Pages
 
@@ -46,7 +46,7 @@ jobs:
       - name: Upload Pages artifact
         if: >-
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
-          (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/using-astro')
+          github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -54,7 +54,7 @@ jobs:
   deploy:
     if: >-
       (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
-      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/using-astro')
+      github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: build
     environment:
