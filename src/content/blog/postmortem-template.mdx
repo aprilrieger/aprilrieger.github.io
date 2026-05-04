@@ -1,0 +1,30 @@
+---
+title: "A postmortem template that engineering managers actually read"
+description: "A compact structure for post-incidents: timeline, customer impact, contributing factors, and corrective actions—without moralizing."
+publishedDate: 2025-06-02
+tags: ["Operations", "Leadership", "Postmortems"]
+featured: true
+---
+
+## Why most write-ups fail
+
+Many postmortems chase blamelessness so hard they forget **decision support**. A good write-up answers: what hurt customers, what amplified it, and what we will **measurably** change.
+
+## The skeleton
+
+1. **Summary** — one paragraph, plain language, customer view first.
+2. **Impact** — duration, error rates, revenue or trust signals if known; explicit “unknowns.”
+3. **Timeline** — UTC, tool-sourced facts, not reconstructed hero narratives.
+4. **Detection** — did we page for the right reason? false negatives costlier than false positives here.
+5. **Root causes** — plural, usually. Separate proximate trigger from systemic contributors.
+6. **What went well** — real praise for automation and runbooks that worked.
+7. **Corrective actions** — each with an owner and a **definition of done**; avoid ticket spam.
+
+## Cultural tradeoffs
+
+- **Depth vs speed**: publish a 24-hour “initial learning” doc for severe events, then a deeper follow-up if facts were missing.
+- **Transparency**: external postmortems earn trust; internal-only invites rumor.
+
+## What I would improve next time
+
+Pair every action item with a **budget or metric** (even a lightweight one). “Add monitoring” without a signal definition tends to decay.

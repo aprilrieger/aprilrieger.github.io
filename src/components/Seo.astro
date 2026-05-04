@@ -1,0 +1,60 @@
+---
+import { siteConfig } from "../site.config";
+
+type Props = {
+  title: string;
+  description: string;
+  path: string;
+  ogType?: "website" | "article";
+  publishedTime?: string;
+  jsonLdPerson?: boolean;
+  /** If true, ask crawlers not to index (internal / demo pages) */
+  noindex?: boolean;
+};
+
+const {
+  title,
+  description,
+  path,
+  ogType = "website",
+  publishedTime,
+  jsonLdPerson = false,
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(path || "/", siteConfig.url).href;
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  jobTitle: siteConfig.role,
+  url: siteConfig.url,
+  sameAs: [siteConfig.social.github, siteConfig.social.linkedin, siteConfig.social.medium],
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+{noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+
+{publishedTime ? <meta property="article:published_time" content={publishedTime} /> : null}
+
+{
+  jsonLdPerson ? (
+    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+  ) : null
+}

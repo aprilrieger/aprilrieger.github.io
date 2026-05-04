@@ -1,0 +1,29 @@
+---
+title: "Schema migrations without the Friday deploy prayer"
+description: "Expand-contract patterns, lock risks, and communicating database changes to teams who just want to ship."
+publishedDate: 2024-09-20
+tags: ["Databases", "PostgreSQL", "Migrations"]
+featured: false
+---
+
+## The real risk
+
+Most migration incidents are not SQL syntax errors—they are **lock duration**, **unexpected defaults**, and **app/db version skew** during rolling deploys.
+
+## Expand/contract in plain language
+
+1. **Expand**: add new columns/tables/indexes in a backward-compatible way; old code still runs.
+2. **Migrate**: dual-write or backfill with idempotent jobs; watch batch sizes.
+3. **Contract**: remove old columns only after traffic proves the new path.
+
+Skipping phases trades a calendar win for **production roulette**.
+
+## Operational habits
+
+- Estimate lock behavior on large tables; use **concurrent index** operations where supported.
+- Feature-flag code paths that read new schema until metrics look sane.
+- Keep runbooks for **rollback**: sometimes that means forward-fix, not `DOWN` migration.
+
+## What I would double-down on next time
+
+Automated checks in CI for **destructive migrations** against recent snapshots—cheap insurance compared to an outage.

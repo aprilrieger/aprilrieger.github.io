@@ -1,0 +1,35 @@
+---
+title: "Idempotency keys: the boring API property that saves you on Tuesday night"
+description: "Why duplicate submissions happen, how idempotency keys change the failure modes you sleep through, and where they are not worth the complexity."
+publishedDate: 2025-08-12
+tags: ["APIs", "Reliability", "System design"]
+featured: true
+---
+
+## The failure mode nobody rehearses
+
+Networks retry. Users double-click. Background jobs replay. Without an explicit strategy, “at-most-once” and “at-least-once” semantics leak into production as **duplicate rows, double charges, and mystery 500s** that only show up under load.
+
+## What an idempotency key buys you
+
+An idempotency key is a client-supplied token scoped to a **single logical operation**. The server stores a mapping from `(key, route)` to a **stable outcome** (response body + status) for a TTL window.
+
+The win is not cleverness—it is **turning ambiguity into a contract**:
+
+- Retries become safe by construction within the TTL.
+- You can return cached responses for duplicates instead of re-executing side effects.
+- Incident response simplifies: “Was this a replay?” becomes answerable from logs.
+
+## Tradeoffs and sharp edges
+
+- **Storage and TTL policy**: you are now running a small database problem. Choose TTL longer than realistic client retry storms; shorter than compliance windows if responses contain sensitive payloads.
+- **Exactly-once fantasy**: true exactly-once across all systems rarely exists. Aim for **business-level idempotence**: the ledger reflects one user intent even if the transport layer jittered.
+- **Hot keys**: malicious or buggy clients can spam one key; rate limit and bound payload work.
+
+## When to skip (for now)
+
+If the operation is read-only, naturally commutative, or already guarded by a unique constraint that matches the user intent **and** you have a clear upsert story, keys may add more moving parts than value. The senior move is to **document the semantics** either way.
+
+## Operational takeaway
+
+If you ship mutating APIs without an idempotency story, you are not avoiding complexity—you are scheduling it for **off-hours** and naming it “data cleanup.”

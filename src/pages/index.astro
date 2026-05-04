@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseStudyCard from "../components/CaseStudyCard.astro";
+import CredibilityStrip from "../components/CredibilityStrip.astro";
+import SocialIconLinks from "../components/SocialIconLinks.astro";
+import TopHeroCard from "../components/TopHeroCard.astro";
+import { siteConfig } from "../site.config";
+import { getCollection } from "astro:content";
+
+const featured = await getCollection(
+  "caseStudies",
+  ({ data }) => data.published && data.featured,
+);
+const sortedFeatured = featured.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<BaseLayout title={siteConfig.title} description={siteConfig.description} path="/" jsonLdPerson>
+  <div class="page-stack">
+    <TopHeroCard labelledBy="hero-heading">
+        <div class="space-y-3">
+          <p
+            class="hero-stagger-1 text-sm uppercase tracking-widest m-0 bg-gradient-to-r from-accent via-accent-hover to-accent-muted bg-clip-text text-transparent"
+          >
+            Portfolio
+          </p>
+          <h1
+            id="hero-heading"
+            class="hero-stagger-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-ink leading-[1.1] m-0"
+          >
+            {siteConfig.name}
+            <span class="block text-xl md:text-2xl font-normal tracking-wide text-ink-subtle mt-2 md:mt-3">
+              {siteConfig.role}
+            </span>
+          </h1>
+        </div>
+        <p class="hero-stagger-3 text-xl font-normal text-ink leading-snug m-0 max-w-2xl mt-6 md:mt-7">
+          {siteConfig.oneLiner}
+        </p>
+        <p class="hero-stagger-4 text-ink-muted m-0 max-w-2xl leading-relaxed mt-4 md:mt-5">
+          {siteConfig.summary}
+        </p>
+        <div class="hero-stagger-5 flex flex-wrap gap-3 mt-10 md:mt-12 pt-0.5">
+          <a href="/projects" class="cta">View projects</a>
+          <SocialIconLinks githubUrl={siteConfig.social.github} linkedinUrl={siteConfig.social.linkedin} />
+        </div>
+    </TopHeroCard>
+
+    <div class="hero-stagger-6">
+      <CredibilityStrip />
+    </div>
+
+    <section aria-labelledby="work-heading" class="page-section space-y-6">
+      <div
+        class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 border-b border-border pb-2"
+      >
+        <h2 id="work-heading" class="text-xl font-semibold text-ink m-0">Featured work</h2>
+        <a
+          href="/projects"
+          class="link-accent-underline text-sm text-accent shrink-0 motion-safe:transition-colors motion-safe:duration-200 hover:text-accent-hover"
+        >
+          All case studies →
+        </a>
+      </div>
+      <div class="grid gap-6 md:grid-cols-1">
+        {
+          sortedFeatured.map((entry, i) => (
+            <CaseStudyCard
+              entry={entry}
+              headingLevel="h3"
+              variant={i === 0 ? "featured" : "default"}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</BaseLayout>

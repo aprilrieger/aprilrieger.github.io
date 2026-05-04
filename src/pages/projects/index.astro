@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CaseStudyCard from "../../components/CaseStudyCard.astro";
+import PageContentColumn from "../../components/PageContentColumn.astro";
+import TopHeroCard from "../../components/TopHeroCard.astro";
+import { siteConfig } from "../../site.config";
+import { getCollection } from "astro:content";
+
+const entries = await getCollection("caseStudies", ({ data }) => data.published);
+const ordered = [...entries].sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  return a.data.title.localeCompare(b.data.title);
+});
+const title = `Projects · ${siteConfig.name}`;
+const count = ordered.length;
+---
+
+<BaseLayout
+  title={title}
+  description="Case studies: problems, constraints, architecture, tradeoffs, and impact."
+  path="/projects"
+  fullWidthMain
+>
+  <article class="page-stack">
+    <PageContentColumn>
+      <TopHeroCard labelledBy="projects-heading">
+        <div class="space-y-3">
+          <p
+            class="hero-stagger-1 text-sm uppercase tracking-widest m-0 bg-gradient-to-r from-accent via-accent-hover to-accent-muted bg-clip-text text-transparent"
+          >
+            Case studies
+          </p>
+          <h1
+            id="projects-heading"
+            class="hero-stagger-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-ink leading-[1.1] m-0"
+          >
+            Projects
+          </h1>
+        </div>
+        <p class="hero-stagger-3 text-xl font-normal text-ink leading-snug m-0 max-w-2xl mt-6 md:mt-7">
+          {siteConfig.selectedWorkLead}
+        </p>
+        <p
+          class="hero-stagger-4 text-sm text-ink-subtle m-0 mt-8 md:mt-10 pt-6 border-t border-border/50 max-w-2xl"
+        >
+          {count} published {count === 1 ? "case study" : "case studies"}
+        </p>
+      </TopHeroCard>
+    </PageContentColumn>
+
+    <section class="project-slider-wrap" aria-label={`Case studies, ${count} projects — scroll horizontally`}>
+      <p class="project-slider-hint">
+        Scroll, swipe, or drag to move through case studies.
+      </p>
+
+      <div class="project-slider-fade">
+        <div
+          class="project-slider-track"
+          data-project-slider
+          tabindex="0"
+          role="region"
+          aria-label={`Case studies, ${count} slides. Scroll horizontally.`}
+        >
+          {
+            ordered.map((entry, i) => (
+              <div
+                class="project-slider-slide"
+                role="group"
+                aria-label={`${i + 1} of ${count}: ${entry.data.title}`}
+                data-slider-slide
+              >
+                <CaseStudyCard
+                  entry={entry}
+                  headingLevel="h2"
+                  variant={entry.data.featured ? "featured" : "default"}
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <script>
+    (() => {
+      const track = document.querySelector("[data-project-slider]");
+      if (!track || !(track instanceof HTMLElement)) return;
+
+      const slides = track.querySelectorAll("[data-slider-slide]");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const gapPx = () => {
+        const g = getComputedStyle(track).gap;
+        const n = parseFloat(g);
+        return Number.isFinite(n) ? n : 20;
+      };
+
+      const slideOffset = (index) => {
+        let left = 0;
+        for (let k = 0; k < index; k++) {
+          const s = slides[k];
+          if (s instanceof HTMLElement) left += s.offsetWidth + gapPx();
+        }
+        return left;
+      };
+
+      const nearestIndex = () => {
+        const scrollLeft = track.scrollLeft;
+        let best = 0;
+        let bestDist = Infinity;
+        for (let i = 0; i < slides.length; i++) {
+          const d = Math.abs(slideOffset(i) - scrollLeft);
+          if (d < bestDist) {
+            bestDist = d;
+            best = i;
+          }
+        }
+        return best;
+      };
+
+      const go = (delta) => {
+        const j = Math.max(0, Math.min(slides.length - 1, nearestIndex() + delta));
+        track.scrollTo({
+          left: slideOffset(j),
+          behavior: reduceMotion ? "auto" : "smooth",
+        });
+      };
+
+      track.addEventListener(
+        "wheel",
+        (e) => {
+          const horizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+          if (horizontal) return;
+          const { scrollWidth, clientWidth, scrollLeft } = track;
+          const max = scrollWidth - clientWidth;
+          if (max <= 0) return;
+          const goingUp = e.deltaY < 0;
+          const goingDown = e.deltaY > 0;
+          const atStart = scrollLeft <= 1;
+          const atEnd = scrollLeft >= max - 1;
+          if ((goingUp && atStart) || (goingDown && atEnd)) return;
+          e.preventDefault();
+          track.scrollLeft += e.deltaY;
+        },
+        { passive: false },
+      );
+
+      track.addEventListener(
+        "keydown",
+        (e) => {
+          if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+            e.preventDefault();
+            go(e.key === "ArrowLeft" ? -1 : 1);
+          }
+        },
+        { passive: false },
+      );
+    })();
+  </script>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Prose from "../../components/Prose.astro";
+import TagPill from "../../components/TagPill.astro";
+import { siteConfig } from "../../site.config";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("caseStudies", ({ data }) => data.published);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const title = `${entry.data.title} · Projects`;
+
+const metrics = entry.data.metrics ?? [];
+---
+
+<BaseLayout title={title} description={entry.data.summary} path={`/projects/${entry.id}`} ogType="article">
+  <article class="page-stack">
+    <header class="page-intro space-y-4">
+      <p class="text-sm text-ink-subtle m-0">
+        <a href="/projects" class="text-accent/90 hover:underline">Projects</a>
+        <span aria-hidden="true"> / </span>
+        <span class="text-ink-muted">{entry.id}</span>
+      </p>
+      <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-ink m-0 leading-tight">
+        {entry.data.title}
+      </h1>
+      <p class="text-lg text-ink-muted m-0 max-w-2xl leading-snug">{entry.data.summary}</p>
+      <div class="flex flex-wrap gap-2 text-xs items-center">
+        {entry.data.company ? <TagPill label={entry.data.company} /> : null}
+        {entry.data.client ? <TagPill label={entry.data.client} /> : null}
+        {entry.data.stack.map((t) => (
+          <TagPill label={t} />
+        ))}
+      </div>
+      {
+        metrics.length > 0 ? (
+          <dl class="grid sm:grid-cols-3 gap-4 not-prose m-0">
+            {metrics.map((m) => (
+              <div class="surface-card p-4">
+                <dt class="text-xs uppercase tracking-wide text-ink-subtle m-0">{m.label}</dt>
+                <dd class="text-lg font-semibold text-ink m-0 mt-1">{m.value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : null
+      }
+    </header>
+    <Prose>
+      <Content />
+    </Prose>
+  </article>
+</BaseLayout>

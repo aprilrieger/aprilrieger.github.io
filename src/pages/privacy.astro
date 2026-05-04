@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("legal", "privacy");
+if (!entry) throw new Error("Missing privacy content");
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="Privacy" description="Privacy policy for this website." path="/privacy">
+  <article class="page-stack">
+    <Prose>
+      <Content />
+    </Prose>
+  </article>
+</BaseLayout>

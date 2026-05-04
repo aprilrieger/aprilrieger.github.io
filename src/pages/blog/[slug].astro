@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Prose from "../../components/Prose.astro";
+import TagPill from "../../components/TagPill.astro";
+import TopHeroCard from "../../components/TopHeroCard.astro";
+import { siteConfig } from "../../site.config";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const title = `${post.data.title} · Blog`;
+const publishedTime = post.data.publishedDate.toISOString();
+---
+
+<BaseLayout
+  title={title}
+  description={post.data.description}
+  path={`/blog/${post.id}`}
+  ogType="article"
+  publishedTime={publishedTime}
+>
+  <article class="page-stack">
+    <TopHeroCard labelledBy="post-heading" class="space-y-4 md:space-y-5">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div class="space-y-3 min-w-0">
+            <p
+              class="hero-stagger-1 text-sm uppercase tracking-widest m-0 bg-gradient-to-r from-accent via-accent-hover to-accent-muted bg-clip-text text-transparent"
+            >
+              Article
+            </p>
+            <h1
+              id="post-heading"
+              class="hero-stagger-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-ink leading-[1.1] m-0"
+            >
+              {post.data.title}
+            </h1>
+          </div>
+          <a
+            href="/blog"
+            class="hero-stagger-2 link-quiet shrink-0 text-sm self-start sm:mt-10"
+          >
+            All posts
+          </a>
+        </div>
+        <p class="hero-stagger-3 text-xl font-normal text-ink-muted m-0 max-w-2xl leading-snug">
+          {post.data.description}
+        </p>
+    </TopHeroCard>
+
+    <div
+      class="hero-stagger-4 flex flex-col lg:flex-row lg:justify-between lg:items-start gap-10 lg:gap-12"
+      aria-label="Article content"
+    >
+      <div class="min-w-0 flex-1 rounded-xl border border-border/90 bg-surface/40 p-6 md:p-8">
+        <Prose>
+          <Content />
+        </Prose>
+      </div>
+      <aside
+        class="w-full lg:w-56 xl:w-64 shrink-0 lg:sticky lg:top-28"
+        aria-label="Article details"
+      >
+        <div class="rounded-xl border border-border/90 bg-surface/30 p-5">
+          <p class="text-[11px] uppercase tracking-[0.14em] text-accent/90 m-0 mb-4">Details</p>
+          <div class="space-y-5 text-sm">
+            <div>
+              <span class="text-xs uppercase tracking-wide text-ink-subtle block mb-1.5">Published</span>
+              <time datetime={publishedTime} class="text-ink-muted tabular-nums">
+                {post.data.publishedDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </time>
+            </div>
+            <div>
+              <span class="text-xs uppercase tracking-wide text-ink-subtle block mb-2">Tags</span>
+              <div class="flex flex-wrap gap-2">
+                {post.data.tags.map((t) => (
+                  <TagPill label={t} />
+                ))}
+              </div>
+            </div>
+            <a
+              href="/blog"
+              class="inline-flex text-accent hover:underline motion-safe:transition-colors text-[15px] font-medium"
+            >
+              ← All posts
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+title: "Employee360 — people data for managers"
+summary: "Consolidated fragmented employee context into a maintainable Rails app so managers could run reviews and coaching with less spreadsheet risk."
+published: true
+featured: true
+company: "Scientist SoftServ ecosystem"
+stack: ["Ruby on Rails", "PostgreSQL", "Product ownership", "APIs"]
+metrics:
+  - label: "Outcome"
+    value: "Single source for 1:1 prep & reviews"
+  - label: "Risk reduced"
+    value: "Ad-hoc file churn → auditable workflows"
+  - label: "Stack"
+    value: "Rails monolith, pragmatic boundaries"
+---
+
+## Problem
+
+Managers needed a dependable place to prepare for one-on-ones, coaching conversations, performance reviews, and promotion decisions. The real pain was not “another HR dashboard”—it was **inconsistent, scattered context** (notes, tickets, informal docs) that did not compose into a coherent timeline when decisions mattered.
+
+## Constraints
+
+- **Small eng surface area**: the goal was maintainability for a consulting-style delivery model, not a platform rewrite.
+- **Trust & access**: people data is sensitive; the design had to make authorization paths obvious and avoid accidental coupling between concerns.
+- **Evolving product shape**: features were discovered through real managers’ workflows, not a fixed spec.
+
+## Architecture
+
+A **Ruby on Rails** application anchored the domain: canonical models for the entities managers actually reason about, with clear service boundaries where integrations or exports might attach later. The architecture favored:
+
+- explicit domain objects over anonymous JSON blobs
+- server-rendered workflows where complexity stayed visible in one place
+- an API posture that could grow without forcing premature microservice splits
+
+At a high level: **web tier → domain services → persistence**, with background work only where user latency demanded it.
+
+## Key decisions and tradeoffs
+
+- **Monolith-first**: deferred service extraction until a second bounded context needed independent release cadence. Paid down complexity early; accepted that future scale might require carving out a service with a real seam.
+- **Product ownership embedded**: engineering decisions were paired with user narratives so “MVP” did not become a junk drawer of half-features.
+- **Auditability vs speed**: biased toward modest ceremony in data changes where HR and compliance risk was non-theoretical.
+
+## Impact
+
+- Managers consolidated prep and documentation into **one workflow**, reducing friction before cyclical processes (reviews, promotions).
+- The codebase remained approachable for the team extending it—**ownership** stayed with engineers who could trace behavior end-to-end.
+- Reduced reliance on ad-hoc spreadsheets and side-channel notes for decisions that should survive handoffs.
+
+## Reflection
+
+If I repeated the project with more runway, I would invest earlier in **observability for business workflows** (not just uptime): funnel metrics for “manager successfully prepared for review,” export/print paths, and stronger guardrails around bulk data operations. The domain is human; the system should make honest mistakes recoverable.

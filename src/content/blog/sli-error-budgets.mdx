@@ -1,0 +1,25 @@
+---
+title: "Meaningful SLIs for APIs teams will not argue about"
+description: "Pick signals tied to user journeys, avoid vanity metrics, and set error budgets that change behavior instead of decorating dashboards."
+publishedDate: 2025-02-04
+tags: ["SRE", "Observability", "SLIs"]
+featured: true
+---
+
+## Start from the journey
+
+SLIs should map to **what a user is trying to finish**: checkout, render a report, submit a form. Availability measured on synthetic pings is better than nothing, but it often **lies** about real success rates.
+
+## Good SLI ingredients
+
+- **Request success** classified by business rules, not raw HTTP 200 (which can mask half-failures).
+- **Latency** measured near the client-facing edge for a meaningful percentile—commonly p95/p99 for interactive flows.
+- **Saturation signals** where applicable: queue depth, thread pool stalls, DB connections.
+
+## Error budgets as a product conversation
+
+A budget is only useful if breaching it **changes prioritization**: feature freeze, chaos time, or shedding low-value paths. Without consequences, dashboards are décor.
+
+## Anti-pattern
+
+“Inventing” SLIs to look comprehensive—too many SLIs means none of them get owned. Three crisp signals beat fifteen sleepy graphs.

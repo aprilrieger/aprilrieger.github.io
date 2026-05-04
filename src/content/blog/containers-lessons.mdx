@@ -1,0 +1,25 @@
+---
+title: "Container lessons I care about more than the Dockerfile syntax"
+description: "Developer experience, deterministic images, secrets, and why 'it runs in Docker' is not the same as production-ready."
+publishedDate: 2023-12-21
+tags: ["Docker", "DevEx", "Production"]
+featured: false
+---
+
+## Containers are packaging, not architecture
+
+Docker made environments reproducible for many teams, but it did not rewrite **network boundaries, persistence guarantees, or observability**. Treat images as **artifacts** with a lifecycle: build, scan, promote, roll back.
+
+## What matters beyond the tutorial
+
+- **Layer caching and build determinism** affect how often you ship.
+- **Secrets** do not belong in image layers; rotate and inject at runtime with a story you can audit.
+- **Volume mounts** for dev ergonomics can hide missing packaging steps—catch drift in CI with a clean build.
+
+## Tradeoffs vs local bare-metal dev
+
+Sometimes a container adds friction on small teams. The senior question: does it **buy parity** between laptop and CI/production? If yes, keep tightening. If no, reconsider cargo-culting.
+
+## Reflection
+
+I've shipped Dockerized stacks happily; I've also watched teams drown in Compose files nobody owns. Own the **contract**—what is tested, what is supported, what is best-effort.

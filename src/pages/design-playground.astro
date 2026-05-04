@@ -1,0 +1,270 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
+import TagPill from "../components/TagPill.astro";
+import { siteConfig } from "../site.config";
+
+const title = `Design playground · ${siteConfig.name}`;
+const description =
+  "Internal reference: typography, Tailwind patterns, and light interactivity available in this Astro site.";
+---
+
+<BaseLayout title={title} description={description} path="/design-playground" noindex>
+  <div class="page-stack">
+    <header class="space-y-4">
+      <p class="text-xs uppercase tracking-widest text-accent/90 m-0">Internal reference</p>
+      <h1 class="text-3xl font-semibold tracking-tight text-ink m-0">Design playground</h1>
+      <p class="text-ink-muted m-0 max-w-3xl leading-relaxed">
+        This page is not linked in the main nav (only in the footer). It documents patterns used across the site;
+        shared classes live in <code class="chip font-mono text-[0.9em]">global.css</code> (
+        <code class="chip">page-stack</code>, <code class="chip">section-title</code>,
+        <code class="chip">surface-card</code>, <code class="chip">cta</code>, <code class="chip">btn-secondary</code>,
+        <code class="chip">link-quiet</code>, …). Colors are tokens in
+        <code class="chip font-mono text-[0.9em]">tailwind.config.mjs</code>
+        (<span class="text-ink-subtle">canvas, surface, border, ink, accent</span>).
+      </p>
+      <p class="text-sm text-ink-subtle m-0">
+        <span class="text-ink-faint">Route:</span>
+        <code class="chip font-mono text-[0.9em]">/design-playground</code>
+      </p>
+    </header>
+
+    <section aria-labelledby="docs-heading" class="page-section">
+      <h2 id="docs-heading" class="section-title">
+        Where to look for more
+      </h2>
+      <ul class="m-0 pl-5 space-y-2 text-ink-muted text-[15px]">
+        <li>
+          <a
+            href="https://tailwindcss.com/docs"
+            class="text-accent hover:underline"
+            target="_blank"
+            rel="noopener noreferrer">Tailwind CSS</a
+          >
+          — spacing, color, layout, responsive prefixes, hover/focus, transitions (<code class="chip">md:</code>,
+          <code class="chip">motion-safe:</code>, etc.)
+        </li>
+        <li>
+          <a
+            href="https://tailwindcss.com/docs/typography-plugin"
+            class="text-accent hover:underline"
+            target="_blank"
+            rel="noopener noreferrer">Typography plugin</a
+          >
+          — <code class="chip">prose</code> styles used in longform content (<a
+            href="/blog"
+            class="text-accent hover:underline">Blog</a
+          >).
+        </li>
+        <li>
+          <a
+            href="https://docs.astro.build/en/guides/view-transitions/"
+            class="text-accent hover:underline"
+            target="_blank"
+            rel="noopener noreferrer">Astro View Transitions</a
+          >
+          — optional smooth route changes (not enabled globally here yet).
+        </li>
+        <li>
+          <a
+            href="https://docs.astro.build/en/reference/directives-reference/#client-directives"
+            class="text-accent hover:underline"
+            target="_blank"
+            rel="noopener noreferrer">Client directives</a
+          >
+          — add React/Vue/Svelte “islands” if you need heavier interactivity (<code class="chip">client:load</code>,
+          <code class="chip">client:visible</code>, …).
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="type-heading" class="page-section">
+      <h2 id="type-heading" class="section-title">
+        Typography scale
+      </h2>
+      <div class="space-y-3 text-ink-muted">
+        <p class="text-3xl font-semibold tracking-tight text-ink m-0">Display / hero</p>
+        <p class="text-xl font-semibold text-ink m-0">Section title</p>
+        <p class="text-lg text-ink m-0">Lead paragraph</p>
+        <p class="text-base m-0">Body default (17px on this site).</p>
+        <p class="text-sm text-ink-subtle m-0">Meta / captions</p>
+        <p class="text-xs uppercase tracking-wider text-accent/75 m-0">Eyebrow label</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="palette-heading" class="page-section">
+      <h2 id="palette-heading" class="section-title">
+        Surfaces & accent
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-ink-muted">
+        <div class="rounded-lg border border-border bg-canvas p-4 h-20 flex items-end">canvas + border</div>
+        <div class="rounded-lg border border-border bg-surface/60 p-4 h-20 flex items-end">card surface</div>
+        <div class="rounded-lg border border-accent/45 bg-accent/15 p-4 h-20 flex items-end text-sm font-semibold text-white">
+          primary CTA (tag style)
+        </div>
+        <div class="rounded-lg border border-accent/40 bg-accent/10 p-4 h-20 flex items-end text-accent-hover">
+          accent tint
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="cta-heading" class="page-section">
+      <h2 id="cta-heading" class="section-title">
+        Buttons & links
+      </h2>
+      <div class="flex flex-wrap gap-3 items-center">
+        <button type="button" class="cta cta-press">
+          Primary
+        </button>
+        <button type="button" class="btn-secondary">Secondary</button>
+        <button
+          type="button"
+          disabled
+          class="inline-flex items-center justify-center px-4 py-2.5 rounded-md bg-surface-elevated text-ink-subtle text-sm font-medium cursor-not-allowed"
+        >
+          Disabled
+        </button>
+        <a href="/projects" class="text-sm text-accent hover:underline underline-offset-4"> Text link → </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="cards-heading" class="page-section">
+      <h2 id="cards-heading" class="section-title">
+        Cards & hover depth
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <article class="surface-card surface-card--lift p-5">
+          <h3 class="text-base font-semibold text-ink m-0 mb-2">Hover lift card</h3>
+          <p class="text-sm text-ink-muted m-0 leading-relaxed">
+            Border + background shift on hover; motion-safe only so reduced-motion users are not disturbed.
+          </p>
+        </article>
+        <article class="surface-card surface-card--lift-accent p-5 group cursor-pointer">
+          <h3 class="text-base font-semibold text-ink m-0 mb-2 group-hover:text-accent-hover motion-safe:transition">
+            Group hover title
+          </h3>
+          <p class="text-sm text-ink-muted m-0 leading-relaxed group-hover:text-ink-muted motion-safe:transition">
+            Parent <code class="chip">group</code> coordinates child color changes.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="tags-heading" class="page-section">
+      <h2 id="tags-heading" class="section-title">
+        Tags
+      </h2>
+      <div class="flex flex-wrap gap-2 items-center">
+        <TagPill label="Design systems" />
+        <TagPill label="Accessibility" />
+        <TagPill label="Platform" />
+      </div>
+      <p class="text-sm text-ink-subtle m-0 max-w-2xl">
+        Lists inside <code class="chip">Prose</code> use the <strong class="text-ink-muted">CTA accent</strong> for
+        bullets and numbers. Use <code class="chip">distributed-markers</code> on a <code class="chip">list-disc</code> ul
+        outside prose for the same marker color (e.g. resume). Tags and inline <code class="chip">code</code> share the
+        same CTA accent chip look (<code class="chip font-mono">.chip</code>).
+      </p>
+    </section>
+
+    <section aria-labelledby="forms-heading" class="page-section">
+      <h2 id="forms-heading" class="section-title">
+        Form controls
+      </h2>
+      <form class="max-w-md space-y-4" onsubmit="event.preventDefault()">
+        <div class="space-y-1.5">
+          <label for="pg-name" class="block text-sm text-ink-muted">Name</label>
+          <input
+            id="pg-name"
+            type="text"
+            placeholder="Ada Lovelace"
+            class="w-full rounded-md border border-border-muted bg-canvas px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-accent/60 focus:outline-none focus:ring-1 focus:ring-accent/40"
+          />
+        </div>
+        <div class="space-y-1.5">
+          <label for="pg-area" class="block text-sm text-ink-muted">Message</label>
+          <textarea
+            id="pg-area"
+            rows="3"
+            class="w-full rounded-md border border-border-muted bg-canvas px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-accent/60 focus:outline-none focus:ring-1 focus:ring-accent/40 resize-y"
+            placeholder="Short note…"></textarea>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="details-heading" class="page-section">
+      <h2 id="details-heading" class="section-title">
+        Disclosure (no JavaScript)
+      </h2>
+      <details class="rounded-lg border border-border bg-surface/30 px-4 py-3 group">
+        <summary
+          class="cursor-pointer text-sm font-medium text-ink list-none flex items-center justify-between gap-2 [&::-webkit-details-marker]:hidden"
+        >
+          <span>Click to expand</span>
+          <span class="text-ink-subtle motion-safe:transition group-open:rotate-180">▾</span>
+        </summary>
+        <p class="text-sm text-ink-muted mt-3 mb-0 leading-relaxed">
+          Native <code class="chip">details</code> / <code class="chip">summary</code> for
+          FAQs or collapsible sections—accessible by default.
+        </p>
+      </details>
+    </section>
+
+    <section aria-labelledby="prose-heading" class="page-section">
+      <h2 id="prose-heading" class="section-title">
+        Prose (MDX / articles)
+      </h2>
+      <Prose>
+        <p>
+          This is <strong>strong</strong>, an <a href="/blog">internal link</a>, and <code>inline code</code> inside
+          the shared Prose wrapper.
+        </p>
+        <ul>
+          <li>List markers use the primary accent (same as CTAs)</li>
+          <li>Ordered lists match</li>
+          <li>So prose bullets stay on-brand</li>
+        </ul>
+      </Prose>
+    </section>
+
+    <section aria-labelledby="interactive-heading" class="page-section">
+      <h2 id="interactive-heading" class="section-title">
+        Light client-side script
+      </h2>
+      <p class="text-sm text-ink-muted m-0 max-w-2xl">
+        For copy-to-clipboard, toggles, or small widgets, a short <code class="chip">script</code> in the page
+        is enough before reaching for React/Vue.
+      </p>
+      <div class="flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          id="pg-copy-btn"
+          data-copy-text={siteConfig.social.emailDisplay}
+          class="inline-flex items-center justify-center px-4 py-2 rounded-md border border-border-muted text-sm text-ink hover:border-accent/50 hover:text-accent-muted motion-safe:transition"
+        >
+          Copy sample email
+        </button>
+        <span id="pg-copy-toast" class="text-sm text-accent font-medium opacity-0 motion-safe:transition-opacity" aria-live="polite">
+          Copied to clipboard
+        </span>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  const btn = document.getElementById("pg-copy-btn");
+  const toast = document.getElementById("pg-copy-toast");
+  btn?.addEventListener("click", async () => {
+    const text = btn.getAttribute("data-copy-text") ?? "";
+    try {
+      await navigator.clipboard.writeText(text);
+      if (toast) {
+        toast.classList.remove("opacity-0");
+        window.setTimeout(() => toast.classList.add("opacity-0"), 2000);
+      }
+    } catch {
+      /* clipboard API unavailable */
+    }
+  });
+</script>

@@ -1,0 +1,19 @@
+---
+/**
+ * Top-of-page hero: glow + grid shell (shared across pages).
+ */
+interface Props {
+  /** Value for aria-labelledby — must match an id inside the slot. */
+  labelledBy: string;
+  /** Extra classes on .hero-shell-inner */
+  class?: string;
+}
+
+const { labelledBy, class: className } = Astro.props;
+---
+
+<section class="hero-shell" aria-labelledby={labelledBy}>
+  <div class:list={["hero-shell-inner", className]}>
+    <slot />
+  </div>
+</section>

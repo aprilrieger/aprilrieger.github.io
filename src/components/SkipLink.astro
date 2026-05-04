@@ -1,0 +1,10 @@
+---
+const { href = "#main", label = "Skip to content" } = Astro.props;
+---
+
+<a
+  href={href}
+  class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-surface focus:text-ink focus:border focus:border-border-muted focus:rounded-md"
+>
+  {label}
+</a>

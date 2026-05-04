@@ -1,0 +1,305 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-canvas text-ink font-sans text-[17px] leading-relaxed;
+  }
+
+  ::selection {
+    @apply bg-accent/25 text-ink;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-accent/60 rounded-sm;
+  }
+}
+
+/* List markers — same as CTA / primary accent */
+@layer components {
+  .prose ul > li::marker,
+  .prose ol > li::marker,
+  .distributed-markers > li::marker {
+    color: theme("colors.accent.DEFAULT");
+  }
+
+  /** Tags / inline code — accent tint + white label */
+  .chip {
+    @apply inline-block rounded border border-accent/25 bg-accent/15 px-2 py-0.5 text-xs font-medium text-white;
+  }
+
+  /**
+   * Primary actions — same shell as .chip; white label.
+   */
+  .cta {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-accent/45 bg-accent/15 px-4 py-2.5 text-sm font-semibold text-white;
+    @apply hover:border-accent hover:bg-accent/25 hover:text-white;
+    @apply motion-safe:transition-colors;
+  }
+
+  .cta-press {
+    @apply active:scale-[0.98] motion-safe:transition motion-safe:duration-150;
+  }
+
+  /** Page rhythm & section chrome (design-playground reference) */
+  .page-stack {
+    @apply space-y-16;
+  }
+
+  .page-section {
+    @apply space-y-4;
+  }
+
+  /** Section H2 with rule */
+  .section-title {
+    @apply text-xl font-semibold text-ink m-0 border-b border-border pb-2;
+  }
+
+  /** Card shell + optional hover lift */
+  .surface-card {
+    @apply rounded-lg border border-border/90 bg-surface/40;
+  }
+
+  .surface-card--lift {
+    @apply motion-safe:transition motion-safe:duration-200 hover:border-border-muted hover:bg-surface/60 motion-safe:hover:-translate-y-0.5;
+  }
+
+  /** Card lift; hover border shifts to accent (group / emphasis pattern) */
+  .surface-card--lift-accent {
+    @apply motion-safe:transition motion-safe:duration-200 hover:border-accent/30 hover:bg-surface/60 motion-safe:hover:-translate-y-0.5;
+  }
+
+  /** Secondary control (outline) */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2.5 rounded-md border border-accent/40 bg-transparent text-sm font-medium text-accent;
+    @apply hover:border-accent hover:bg-accent/10 hover:text-accent-hover;
+    @apply active:scale-[0.98] motion-safe:transition motion-safe:duration-150;
+  }
+
+  /** Quiet nav-style text actions (hero tertiary links) */
+  .link-quiet {
+    @apply inline-flex items-center justify-center px-4 py-2.5 rounded-md border border-transparent text-sm text-ink-muted hover:text-ink motion-safe:transition-colors;
+  }
+
+  /** Page intro: H1 block before main content */
+  .page-intro {
+    @apply space-y-4 border-b border-border pb-8;
+  }
+
+  .page-intro--tight {
+    @apply space-y-3 border-b border-border pb-8;
+  }
+
+  /** Home hero: soft glow + optional grid texture */
+  .hero-shell {
+    @apply relative overflow-hidden rounded-2xl border border-border/70 bg-surface/30 px-6 py-8 md:px-10 md:py-12;
+  }
+
+  .hero-shell::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-100;
+    background: radial-gradient(
+      ellipse 85% 65% at 50% -15%,
+      color-mix(in srgb, theme("colors.accent.DEFAULT") 22%, transparent),
+      transparent 55%
+    );
+  }
+
+  .hero-shell::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-[0.35];
+    background-image: linear-gradient(
+        to right,
+        color-mix(in srgb, theme("colors.border.DEFAULT") 35%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, theme("colors.border.DEFAULT") 35%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 75%);
+  }
+
+  .hero-shell-inner {
+    @apply relative z-10;
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(0.6rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-stagger-1,
+  .hero-stagger-2,
+  .hero-stagger-3,
+  .hero-stagger-4,
+  .hero-stagger-5,
+  .hero-stagger-6,
+  .hero-stagger-7 {
+    opacity: 0;
+    animation: hero-fade-up 0.55s ease-out forwards;
+  }
+
+  .hero-stagger-1 {
+    animation-delay: 0.04s;
+  }
+  .hero-stagger-2 {
+    animation-delay: 0.11s;
+  }
+  .hero-stagger-3 {
+    animation-delay: 0.18s;
+  }
+  .hero-stagger-4 {
+    animation-delay: 0.25s;
+  }
+  .hero-stagger-5 {
+    animation-delay: 0.32s;
+  }
+  .hero-stagger-6 {
+    animation-delay: 0.39s;
+  }
+  .hero-stagger-7 {
+    animation-delay: 0.46s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-stagger-1,
+    .hero-stagger-2,
+    .hero-stagger-3,
+    .hero-stagger-4,
+    .hero-stagger-5,
+    .hero-stagger-6,
+    .hero-stagger-7 {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /**
+   * Projects page: full-width horizontal slider (use with BaseLayout fullWidthMain).
+   */
+  .project-slider-wrap {
+    @apply relative w-full mt-4 border-t border-border/50 pt-10 md:pt-14;
+  }
+
+  .project-slider-hint {
+    @apply w-full max-w-5xl mx-auto px-5 md:px-6 mb-4 md:mb-6 text-sm text-ink-subtle m-0;
+  }
+  .project-slider-fade {
+    position: relative;
+    width: 100%;
+  }
+
+  .project-slider-fade::before,
+  .project-slider-fade::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1.75rem;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  @media (min-width: 768px) {
+    .project-slider-fade::before,
+    .project-slider-fade::after {
+      width: 3rem;
+    }
+  }
+
+  .project-slider-fade::before {
+    left: 0;
+    background: linear-gradient(90deg, theme("colors.canvas") 18%, transparent);
+  }
+
+  .project-slider-fade::after {
+    right: 0;
+    background: linear-gradient(270deg, theme("colors.canvas") 18%, transparent);
+  }
+
+  .project-slider-track {
+    @apply relative z-[1] flex w-full box-border gap-6 md:gap-8 py-3;
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+    scroll-padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    scroll-padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.border.muted") transparent;
+  }
+
+  @media (min-width: 768px) {
+    .project-slider-track {
+      @apply pl-10 pr-10;
+      scroll-padding-left: 2.5rem;
+      scroll-padding-right: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .project-slider-track {
+      @apply pl-14 pr-14;
+      scroll-padding-left: 3.5rem;
+      scroll-padding-right: 3.5rem;
+    }
+  }
+
+  .project-slider-track:focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-accent/60 rounded-lg;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .project-slider-track {
+      scroll-behavior: smooth;
+    }
+  }
+
+  .project-slider-slide {
+    flex: 0 0 min(88%, min(90vw, 80rem));
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-width: 0;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    box-sizing: border-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-slider-track {
+      scroll-behavior: auto;
+    }
+  }
+
+  /** Accent underline reveals on hover (key nav links) */
+  .link-accent-underline {
+    @apply underline underline-offset-4 decoration-2 transition-[text-decoration-color] duration-200;
+    text-decoration-color: transparent;
+  }
+
+  .link-accent-underline:hover {
+    text-decoration-color: theme("colors.accent.DEFAULT");
+  }
+}
