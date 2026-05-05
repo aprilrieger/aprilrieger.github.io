@@ -30,7 +30,7 @@ Colors are semantic tokens in [`tailwind.config.mjs`](tailwind.config.mjs) (`can
 - Site metadata and nav: [`src/site.config.ts`](src/site.config.ts)
 - Static assets (images, resume PDF): [`public/`](public)
 
-Replace [`public/april_rieger_resume.pdf`](public/april_rieger_resume.pdf) with your final resume.
+Replace [`public/April_Rieger_Software_Engineer_Resume_2026.pdf`](public/April_Rieger_Software_Engineer_Resume_2026.pdf) with your final resume.
 
 ## Deploy (GitHub Pages)
 
