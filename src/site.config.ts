@@ -4,16 +4,16 @@ export const siteConfig = {
   /** Default <title> and OG site name */
   title: "April Rieger · Senior Software Engineer",
   description:
-    "Senior engineer focused on platform reliability, backend architecture, and shipping measurable outcomes in complex product environments.",
+    "Senior software engineer specializing in IaC and Kubernetes provisioning—proven impact on AWS cost, operational efficiency, multi-environment ops, and GitOps-driven delivery.",
   url: "https://aprilrieger.github.io",
   language: "en",
   /** Hero: one line, specific */
   oneLiner:
-    "I lead delivery of resilient platforms and backend systems where scale, ownership, and tradeoffs matter.",
+    "I design and operate Kubernetes platforms, IaC, and GitOps workflows where reliability, cost, and multi-environment operations matter.",
   /** Hero: 2 sentences */
   summary:
-    "I have operated in cross-functional teams modernizing legacy stacks, tightening SLOs, and turning ambiguous product goals into shippable architecture. Recent impact spans performance work, operational maturity, and full-stack product delivery on Rails and cloud-native stacks.",
-  resumePdfPath: "/april_rieger_resume.pdf",
+    "Dynamic senior engineer specializing in IaC and Kubernetes provisioning—recent wins include roughly 20% AWS cost reduction alongside stronger operational efficiency. I thrive owning multi-environment platforms, automated deployment pipelines, and collaboration that turns infrastructure into something teams can ship on safely.",
+  resumePdfPath: "/April_Rieger_Software_Engineer_Resume_2026.pdf",
   social: {
     github: "https://github.com/aprilrieger",
     linkedin: "https://www.linkedin.com/in/aprilrieger1",
@@ -38,12 +38,21 @@ export const siteConfig = {
     "Technical notes on system design, tradeoffs, and lessons from production.",
   /** Credibility strip on home */
   credibility: [
-    { label: "Focus", detail: "Backend platforms, reliability, distributed systems" },
-    { label: "Scale", detail: "Production services, throughput, and operational load" },
-    { label: "Stack", detail: "Ruby on Rails, cloud infra, APIs, full-stack delivery" },
+    {
+      label: "Focus",
+      detail: "Kubernetes engineering, container orchestration, GitOps and continuous delivery",
+    },
+    {
+      label: "Platform",
+      detail: "IaC provisioning, observability and reliability, multi-environment management",
+    },
+    {
+      label: "Stack",
+      detail: "AWS EKS, Terraform/OpenTofu, Argo CD, Cloudflare edge (DNS, WAF, rate limiting)",
+    },
   ],
   footerNote:
-    "Open to senior IC or lead-engineer roles and selective technical consulting where ownership and impact are explicit.",
+    "Open to senior software engineering roles focused on platform, cloud infrastructure, Kubernetes, and IaC—plus selective consulting—where ownership and measurable impact are explicit.",
 } as const;
 
 export type SiteConfig = typeof siteConfig;
