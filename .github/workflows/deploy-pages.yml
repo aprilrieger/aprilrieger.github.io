@@ -1,10 +1,9 @@
-# Deploy static Astro site to GitHub Pages (official artifact + deploy-pages flow).
-# One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
-# Docs: https://docs.astro.build/en/guides/deploy/github/
+# Deploy static Astro site to GitHub Pages.
+# - Build runs on: push to main, PRs to main, manual dispatch
+# - Deploy runs on: push to main, manual dispatch (NOT on PRs)
 #
-# Deploy from `main` and `using-astro`. If deploy fails with “branch is not allowed to
-# deploy to github-pages”, add this repo + both branches under:
-# Settings → Environments → github-pages → Deployment branches (Selected branches).
+# One-time repo setup: Settings → Pages → Source: GitHub Actions
+# Docs: https://docs.astro.build/en/guides/deploy/github/
 
 name: Deploy to GitHub Pages
 
