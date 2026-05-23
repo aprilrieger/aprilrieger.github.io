@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TalkCard from "../components/TalkCard.astro";
+import TopHeroCard from "../components/TopHeroCard.astro";
+import { siteConfig } from "../site.config";
+
+const talks = siteConfig.talks;
+const title = `Talks · ${siteConfig.name}`;
+const count = talks.length;
+---
+
+<BaseLayout title={title} description={siteConfig.talksLead} path="/talks">
+  <article class="page-stack">
+    <TopHeroCard labelledBy="talks-heading">
+      <div class="space-y-3">
+        <p
+          class="hero-stagger-1 text-sm uppercase tracking-widest m-0 bg-gradient-to-r from-accent via-accent-hover to-accent-muted bg-clip-text text-transparent"
+        >
+          Speaking
+        </p>
+        <h1
+          id="talks-heading"
+          class="hero-stagger-2 text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tighter text-ink leading-[1.1] m-0"
+        >
+          Talks
+        </h1>
+      </div>
+      <p class="hero-stagger-3 text-xl font-normal text-ink leading-snug m-0 max-w-2xl mt-6 md:mt-7">
+        {siteConfig.talksLead}
+      </p>
+      <p
+        class="hero-stagger-4 text-sm text-ink-subtle m-0 mt-8 md:mt-10 pt-6 border-t border-border/50 max-w-2xl"
+      >
+        {count} {count === 1 ? "presentation" : "presentations"}
+      </p>
+    </TopHeroCard>
+
+    <section class="page-section" aria-label="Conference talks">
+      <div
+        class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 border-b border-border pb-2 mb-6 md:mb-8"
+      >
+        <h2 class="text-xl font-semibold text-ink m-0">Presentations</h2>
+      </div>
+      <ul class="m-0 list-none space-y-5 md:space-y-6 p-0">
+        {
+          talks.map((talk) => (
+            <li class="list-none">
+              <TalkCard
+                year={talk.year}
+                venue={talk.venue}
+                title={talk.title}
+                topics={talk.topics}
+                links={talk.links}
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </article>
+</BaseLayout>
