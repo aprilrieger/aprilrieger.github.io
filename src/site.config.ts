@@ -65,6 +65,7 @@ export const siteConfig = {
       links: {
         video: "https://www.youtube.com/watch?v=H89E_KHrK9Q",
         slides: "https://github.com/notch8/cloudflare-iac-example/releases/download/fedora-showcase-april-2026/n8-from-whack-a-mole-to-edge-protection.pdf",
+        repo: "https://github.com/notch8/cloudflare-iac-example",
       },
     },
     {

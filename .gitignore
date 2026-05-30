@@ -5,6 +5,11 @@
 /dist
 /.astro
 
+# Test coverage
+/coverage
+/playwright-report
+/test-results
+
 # Tooling caches
 /.cache
 

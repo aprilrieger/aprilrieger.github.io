@@ -24,8 +24,33 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          slug: aprilrieger/aprilrieger.github.io
+          fail_ci_if_error: false
+
   build:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,6 +67,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Upload build for e2e
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
       - name: Upload Pages artifact
         if: >-
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
@@ -50,12 +81,48 @@ jobs:
         with:
           path: dist
 
+  e2e:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Download build
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 7
+
   deploy:
     if: >-
       (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
       (github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
-    needs: build
+    needs: [build, e2e]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

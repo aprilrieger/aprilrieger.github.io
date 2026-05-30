@@ -1,5 +1,7 @@
 # aprilrieger.github.io
 
+[![codecov](https://codecov.io/gh/aprilrieger/aprilrieger.github.io/graph/badge.svg)](https://codecov.io/gh/aprilrieger/aprilrieger.github.io)
+
 Senior-level portfolio site built with [Astro 6.2](https://astro.build/), MDX content collections, and Tailwind CSS. Static output goes to `dist/` for GitHub Pages.
 
 Requires **Node 20+**. This repo uses [`.npmrc`](.npmrc) with `legacy-peer-deps=true` so `@astrojs/tailwind` installs cleanly with Astro 6 until upstream peer ranges catch up.
@@ -17,6 +19,16 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## Test
+
+```sh
+npm test              # run tests
+npm run test:watch    # run tests in watch mode
+npm run test:coverage # run tests with coverage report
+```
+
+Coverage reports are uploaded to [Codecov](https://codecov.io/gh/aprilrieger/aprilrieger.github.io) on CI. Thresholds (80% lines/branches/functions/statements) are enforced in [`vitest.config.ts`](vitest.config.ts).
 
 ## Theme
 
@@ -44,8 +56,8 @@ This repo is set up for a **user site** at `https://aprilrieger.github.io`. `sit
 
 ### What the workflow does
 
-- **Push to `main` or `using-astro`:** `npm ci` → `npm run build` → upload `dist/` → deploy with `actions/deploy-pages`.
-- **Pull requests** into `main` or `using-astro`: runs **build only** (no deploy).
-- **Workflow dispatch:** run manually from **`main`** or **`using-astro`** to deploy that ref.
+- **Push to `main`:** tests → build → upload `dist/` → deploy with `actions/deploy-pages`.
+- **Pull requests** into `main`: runs **tests and build** (no deploy). Coverage uploaded to Codecov.
+- **Workflow dispatch:** run manually from **`main`** to deploy that ref.
 
 Publishing uses the same workflow as [Astro’s GitHub guide](https://docs.astro.build/en/guides/deploy/github/). You can still run `npm run deploy` locally with `gh-pages` if needed; Actions is the recommended path.
